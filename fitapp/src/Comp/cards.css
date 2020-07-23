@@ -1,0 +1,21 @@
+
+.container {
+    width: 40%;
+}
+
+form {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #1EA896;
+    border: 2px solid #4C5454;
+    padding:2%;
+
+}
+
+input {
+    margin: 1%;
+}
+
+
