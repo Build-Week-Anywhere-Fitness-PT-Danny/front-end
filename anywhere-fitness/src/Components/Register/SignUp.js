@@ -1,127 +1,158 @@
 import React, {useState, useEffect} from 'react'
-import * as yup from 'yup'
 import axios from 'axios'
+import * as Yup from "yup";
 
 function SignUp(props) {
-    const defaultState = { 
-      name: "",
-      username:"",
-      password:"",
-      client: false,
-      admin: false,
+    //name
+    //username
+    //password
+    // checkbox for client
+    // checkbox for instructor(admin)
+
+    const [values, setValues] = useState({
+        fullname: "",
+        username: "",
+        password: "",
+        client: false,
+        admin: false,
+    })
+
+    const [buttonDisabled, setButtonDisabled] = useState(true);
+
+    const handleChange = event => {
+        const usertype =
+          event.target.type === "checkbox" ? event.target.checked : event.target.value;
+        setValues({
+            ...values, 
+            [event.target.name]: usertype
+        })
+        validateChange(event);
     }
 
-const [formState, setFormState] = useState(defaultState);
-const [errors, setErrors] = useState({ ...defaultState });
-const [buttonDisabled, setButtonDisabled] = useState(true);
-
-let formSchema = yup.object().shape({
-    name: yup.string().required().min(2),
-    username: yup.string().required().min(2).max(11),
-    password: yup.string().required().min(2).max(11),
-    client: yup.boolean().oneOf([true]),
-    admin: yup.boolean().oneOf([true])
-})
-
-useEffect(() => {
-    formSchema.isValid(formState).then(valid => setButtonDisabled(!valid));
-  }, [formState]);
-
-
-  const validateChange = e => {
-    e.persist();
-    yup
-      .reach(formSchema, e.target.name)
-      .validate(e.target.value)
-      .then(() =>
-        setErrors({
-          ...errors,
-          [e.target.name]: ""
-        })
-      )
-      .catch(error =>
-        setErrors({
-          ...errors,
-          [e.target.name]: error.errors[0]
-        })
-      );
-  };
-
-  
-  const inputChange = e => {
-    const value =
-      e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    setFormState({
-      ...formState,
-      [e.target.name]: value
-    });
-    validateChange(e);
-  };
-    
     const handleSubmit = event => {
         event.preventDefault();
-        if (formState) {
-            props.setTeam([...props.team, {formState}])
-        }
+        console.log("form submitted!");
         axios
-        .post("https://reqres.in/api/auth/register", formState)
-        .then(() => console.log("form submitted success"))
-        .catch(err => console.log(err));
-        console.log(formState);
-        event.target.reset(...props.team, {formState});
+          .post("https://reqres.in/api/auth/register", values)
+          .then(() => console.log("form submitted success"))
+          .catch(err => console.log(err));
+          console.log(values)
     }
 
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-            <input 
-                id="clientName" 
-                type="text" 
-                name="name" 
-                placeholder="Please Enter Your Name"
-                value={formState.name}
-                onChange={inputChange}
-            />
-             <input 
-                id="userName" 
-                type="text" 
-                name="username" 
-                placeholder="User Name"
-                value={formState.userName}
-                onChange={inputChange}
-            />
-            <input 
-                id="password" 
-                type="text" 
-                name="password" 
-                placeholder="Password"
-                value={formState.passWord}
-                onChange={inputChange}
-            />
-            <label htmlFor="client"> client
-            <input
-                type="checkbox"
-                name="client"
-                onChange={inputChange}
-            />
-            </label>
-            <label htmlFor="client"> instructur
-            <input
-                type="checkbox"
-                name="admin"
-                onChange={inputChange}
-            />
-            </label>
-            <label htmlFor="submit">
+    const [errors, setErrors] = useState({
+        fullname: "",
+        username: "",
+        password: "",
+        client: false,
+        admin: false,
+    })
+
+    const formSchema = Yup.object().shape({
+        fullname: Yup
+          .string()
+          .min(5,"Must include Full Name")
+          .required("Must include Full Name"),
+        username: Yup
+          .string()
+          .min(5, "username must be atleast 5 characters long")
+          .required("username is required"),
+        password: Yup 
+            .string()
+            .min(5,"Password must be 5-10 characters long")
+            .required(),
+        client: Yup
+          .boolean()
+          .oneOf([true], "User Type is required"),
+        admin: Yup
+          .boolean()
+      });
+
+      useEffect(() => {
+        formSchema.isValid(values).then(valid => {
+          setButtonDisabled(!valid);
+        });
+      }, [values]);
+
+      const validateChange = e => {
+        e.persist();
+        Yup
+          .reach(formSchema, e.target.name)
+          .validate(e.target.value)
+          .then(() =>
+            setErrors({
+              ...errors,
+              [e.target.name]: ""
+            })
+          )
+          .catch(error =>
+            setErrors({
+              ...errors,
+              [e.target.name]: error.errors[0]
+            })
+          );
+      };
+
+
+return (
+    <div>
+        <form onSubmit={handleSubmit}>
+            <label htmlFor="fullname"> First and Last Name: 
                 <input
+                    type="text"
+                    name="fullname"
+                    value={values.fullname}
+                    onChange={handleChange}
+                    error={errors.fullname}
+                />
+             {errors.fullname.length > 5 ?(<p className="error">{errors.fullname}</p>) : null }
+            </label>
+        
+
+            <label htmlFor="username"> Username :
+                <input
+                    type="text"
+                    name="username"
+                    value={values.username}
+                    onChange={handleChange}
+                />
+            </label>
+
+            <label htmlFor="password"> Password :
+                <input
+                    type="password"
+                    name="password"
+                    value={values.password}
+                    onChange={handleChange}
+                />
+            </label>  
+            <label htmlFor="select">
+                Client:
+                <input 
+                id="checkbox"
+                type="checkbox" 
+                name="client"
+                value={values.admin}
+                onChange={handleChange} />
+                instructor:
+            <input 
+                id="checkbox"
+                type="checkbox" 
+                name="admin" 
+                value={values.admin} 
+                onChange={handleChange} 
+                />
+            </label>
+
+            <input
+                disabled={buttonDisabled}
                 id="submit"
                 type="submit"
                 name="submit"
-                />
-            </label>
-            </form>
-        </div>
-    )
+            />
+
+        </form>
+    </div>
+)
 }
 
 export default SignUp
