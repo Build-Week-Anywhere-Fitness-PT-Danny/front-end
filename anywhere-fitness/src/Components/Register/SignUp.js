@@ -5,10 +5,10 @@ import axios from 'axios'
 function SignUp(props) {
     const defaultState = { 
       name: "",
-      userName:"",
-      passWord:"",
+      username:"",
+      password:"",
       client: false,
-      instructur: false,
+      admin: false,
     }
 
 const [formState, setFormState] = useState(defaultState);
@@ -17,10 +17,10 @@ const [buttonDisabled, setButtonDisabled] = useState(true);
 
 let formSchema = yup.object().shape({
     name: yup.string().required().min(2),
-    userName: yup.string().required().min(2).max(11),
-    passWord: yup.string().required().min(2).max(11),
+    username: yup.string().required().min(2).max(11),
+    password: yup.string().required().min(2).max(11),
     client: yup.boolean().oneOf([true]),
-    instructur: yup.boolean().oneOf([true])
+    admin: yup.boolean().oneOf([true])
 })
 
 useEffect(() => {
@@ -67,7 +67,8 @@ useEffect(() => {
         .post("https://reqres.in/api/auth/register", formState)
         .then(() => console.log("form submitted success"))
         .catch(err => console.log(err));
-        console.log(formState)
+        console.log(formState);
+        event.target.reset(...props.team, {formState});
     }
 
     return (
@@ -84,7 +85,7 @@ useEffect(() => {
              <input 
                 id="userName" 
                 type="text" 
-                name="userName" 
+                name="username" 
                 placeholder="User Name"
                 value={formState.userName}
                 onChange={inputChange}
@@ -92,7 +93,7 @@ useEffect(() => {
             <input 
                 id="password" 
                 type="text" 
-                name="passWord" 
+                name="password" 
                 placeholder="Password"
                 value={formState.passWord}
                 onChange={inputChange}
@@ -107,7 +108,7 @@ useEffect(() => {
             <label htmlFor="client"> instructur
             <input
                 type="checkbox"
-                name="instructur"
+                name="admin"
                 onChange={inputChange}
             />
             </label>
