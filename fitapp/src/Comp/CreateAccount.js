@@ -1,9 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../Comp/cards.css';
 
 const CreateAccount = props => {
 
+    const user = {
+        name: '',
+        email: '',
+        username: '',
+        password: '',
+    }
 
+    const [newUser, setNewUser] = useState(user)
 
     const change = e => {
        console.log('hi');
