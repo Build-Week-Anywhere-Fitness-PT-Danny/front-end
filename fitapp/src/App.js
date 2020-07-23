@@ -3,6 +3,7 @@ import './App.css';
 import LoginCard from './Comp/Logincard';
 import {Switch, Route} from 'react-router-dom';
 import CreateAccount from './Comp/CreateAccount';
+import CreateClass from './Comp/CreateClass';
 
 function App() {
   
@@ -13,8 +14,11 @@ function App() {
         <Route exact path='/'>
           <LoginCard />
         </Route>
-        <Route path='/create'>
+        <Route path='/createAccount'>
           <CreateAccount />
+        </Route>
+        <Route path='/createClass'>
+          <CreateClass />
         </Route>
       </Switch>
     </div>

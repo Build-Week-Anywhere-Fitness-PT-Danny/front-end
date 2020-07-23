@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
-import '../Comp/cards.css';
+import '../Comp/forms.css';
 import axios from 'axios';
 
 const LoginCard = (props) =>{
@@ -38,7 +38,7 @@ const LoginCard = (props) =>{
             <input type='password' onChange={change} placeholder='Password' name='password' value={login.password}/>
             <button type='submit'>Login</button>
             </form>
-            <Link to='/create'>Create Account</Link>
+            <Link to='/createAccount'>Create Account</Link>
         </div>
     );
 }
