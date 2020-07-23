@@ -18,4 +18,12 @@ input {
     margin: 1%;
 }
 
+select {
+    margin: 1%;
+}
+
+.dur {
+    display: flex;
+}
+
 
