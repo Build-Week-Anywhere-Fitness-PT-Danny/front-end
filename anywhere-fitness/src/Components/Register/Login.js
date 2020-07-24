@@ -1,7 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
 
 function Login() {
     let { register, handleSubmit, errors} = useForm();
@@ -28,9 +27,9 @@ function Login() {
                     ref={register({required:true})}
                     />
                 {errors.password && <p>Password is Required</p>}
-                <Link to="/InstructorApp"><input
+                <input
                     type="submit"
-                /></Link>
+                />
             </form>
         </div>
     )
