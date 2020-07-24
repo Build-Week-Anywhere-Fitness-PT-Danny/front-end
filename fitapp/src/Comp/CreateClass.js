@@ -52,10 +52,10 @@ const CreateClass = props => {
                 <div className='box'>
                     <p>Intensity</p>
                     <select name='intensity'>
-                        <option>★☆☆☆</option>
-                        <option>★★☆☆</option>
-                        <option>★★★☆</option>
-                        <option>★★★★</option>
+                        <option value='★☆☆☆'>★☆☆☆</option>
+                        <option value='★★☆☆'>★★☆☆</option>
+                        <option value='★★★☆'>★★★☆</option>
+                        <option value='★★★★'>★★★★</option>
                     </select>
                 </div>
                 <input type='text' placeholder='Location' name='location' onChange={change} value={newClass.location}/>

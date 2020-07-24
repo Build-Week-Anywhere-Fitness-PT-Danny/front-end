@@ -1,0 +1,15 @@
+.easy {
+    color: green;
+    margin-left: 3%;
+}
+
+.medium {
+    color: orange;
+    margin-left: 3%;
+}
+
+.top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
