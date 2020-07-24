@@ -44,7 +44,7 @@ function SignUp(props) {
         username: "",
         password: "",
         client: false,
-        admin: false,
+        instructor: false,
     })
 
     const formSchema = Yup.object().shape({
@@ -62,8 +62,8 @@ function SignUp(props) {
             .required(),
         client: Yup
           .boolean()
-          .oneOf([true], "User Type is required"),
-        admin: Yup
+          .optional(),
+        instructor: Yup
           .boolean()
       });
 
@@ -104,7 +104,7 @@ return (
                     onChange={handleChange}
                     error={errors.fullname}
                 />
-             {errors.fullname.length > 5 ?(<p className="error">{errors.fullname}</p>) : null }
+             {errors.fullname.length > 0 ?(<p>{errors.fullname}</p>) : null }
             </label>
         
 
@@ -114,7 +114,9 @@ return (
                     name="username"
                     value={values.username}
                     onChange={handleChange}
+                    error={errors.username}
                 />
+              {errors.username.length > 0 ? (<p>{errors.username}</p>): null }
             </label>
 
             <label htmlFor="password"> Password :
@@ -123,22 +125,24 @@ return (
                     name="password"
                     value={values.password}
                     onChange={handleChange}
+                    error={errors.password}
                 />
+            {errors.password.length >0 ? (<p>{errors.password}</p>) :null}
             </label>  
-            <label htmlFor="select">
+            <label htmlFor="client">
                 Client:
                 <input 
-                id="checkbox"
                 type="checkbox" 
                 name="client"
-                value={values.admin}
+                value={values.client}
                 onChange={handleChange} />
-                instructor:
-            <input 
-                id="checkbox"
+              </label>
+            <label htmlFor="admin"> 
+              Instructor: 
+              <input 
                 type="checkbox" 
                 name="admin" 
-                value={values.admin} 
+                value={values.instructor} 
                 onChange={handleChange} 
                 />
             </label>
