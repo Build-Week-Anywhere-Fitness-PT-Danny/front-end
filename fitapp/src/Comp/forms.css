@@ -1,6 +1,9 @@
+ 
+/* used for CreateAccount, CreateClass, and LoginCard */
+
 
 .container {
-    width: 40%;
+    
 }
 
 form {
@@ -10,7 +13,7 @@ form {
     justify-content: space-evenly;
     background-color: #1EA896;
     border: 2px solid #4C5454;
-    padding:2%;
+    padding: 5%;
 
 }
 
@@ -22,8 +25,10 @@ select {
     margin: 1%;
 }
 
-.dur {
+.box {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 

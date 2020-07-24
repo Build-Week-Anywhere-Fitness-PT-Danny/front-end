@@ -1,11 +1,18 @@
 .App {
   text-align: center;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 2%;
+}
+.cont {
   display: flex;
   justify-content: center;
   align-content: center;
 }
-
-
 
 
 
