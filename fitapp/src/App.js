@@ -6,6 +6,7 @@ import CreateClass from './Comp/CreateClass';
 import AltNav from './Comp/Header';
 import HomePage from './Comp/home';
 import axios from 'axios';
+import 'semantic-ui-css/semantic.min.css'
 
 function App() {
   const [posts, setPosts] = useState([]);

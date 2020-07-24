@@ -21,16 +21,23 @@ nav {
     width: 50%;
 }
 
-.hform {
+form {
     display: flex;
     flex-direction: row;
     padding: 0px;
     margin: 0px;
     border: none;
+    background-color: white;
 }
 
 .hform input {
     margin: 0px;
     padding: 0px;
     margin-left: 2%;
+    background-color: white;
 }
+
+.menu {
+    margin-bottom: 0px;
+}
+

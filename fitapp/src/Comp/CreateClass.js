@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './forms.css';
 import axios from 'axios';
+import { Form } from 'semantic-ui-react';
 
 
 
@@ -36,7 +37,7 @@ const CreateClass = props => {
 
         <div className='container'>
             <h2>Post your class!</h2>
-            <form onSubmit={submit}>
+            <Form onSubmit={submit} className='form'>
                 <input type='text' placeholder='Name'name='name' onChange={change} value={newClass.name}/>
                 <input type='text' placeholder='Type of workout' name='type' onChange={change} value={newClass.type}/>
                 <input type='time' name='startTime' onChange={change} value={newClass.startTime}/>
@@ -61,7 +62,7 @@ const CreateClass = props => {
                 <input type='text' placeholder='Location' name='location' onChange={change} value={newClass.location}/>
                 <input type='number' placeholder='Max class Size' name='maxClassSize' onChange={change} value={newClass.maxClassSize}/>
                 <button type='submit'>Post Session</button>
-            </form>
+            </Form>
         </div>
     )
 }

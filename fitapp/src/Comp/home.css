@@ -3,6 +3,37 @@
     margin-left: 3%;
 }
 
+★☆☆☆ {
+    color: green;
+    margin-left: 3%;
+}
+
+★★☆☆ {
+    color: yellow;
+    margin-left: 3%;
+}
+.★★★☆ {
+    color: orange;
+    margin-left: 3%;
+}
+
+.★★★★ {
+    color: red;
+    margin-left: 3%;
+}
+
+.card {
+    background: white;
+    width:25%;
+    height: 200px;
+    margin-top: 5%;
+}
+
+.hard {
+    color: red;
+    margin-left: 3%;
+}
+
 .medium {
     color: orange;
     margin-left: 3%;
@@ -12,4 +43,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.bod {
+    background-color: red;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-image: url('../imgs/active-5009644_1920.jpg');
+    background-position: center;
+    background-size: contain;
 }

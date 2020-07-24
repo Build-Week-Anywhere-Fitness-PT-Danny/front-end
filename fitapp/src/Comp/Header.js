@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './header.css';
+import {Menu, Button, Input,} from 'semantic-ui-react';
 
 
 const AltNav = props => {
@@ -34,30 +35,40 @@ const AltNav = props => {
 
     if(currentUser == null){
     return(
-        <header>
-            <nav>
-                <Link to='/'>Home</Link>
+        <Menu >
+            <Menu.Item>
+                <Link to='/' >Home</Link>
+            </Menu.Item>
+            <Menu.Item >
                 <Link to='/postClass'>Post Class</Link>
-            </nav>
-            <form className='hform'onSubmit={submit}>
-                <input type='text' onChange={change} placeholder='Username' name='username' value={login.username}/>
-                <input type='password' onChange={change} placeholder='Password' name='password' value={login.password}/>
-                <button type='submit'>Login</button>
-            </form>
-            <div>
-            <Link to='/createAccount'>Create Account</Link>
-            </div>
+            </Menu.Item>
+            <Menu.Item position='right'>
+                <Link to='/createAccount'>Create Account</Link>
+            </Menu.Item>
+            <Menu.Item position='right'>
+                <form className='hform'onSubmit={submit}>
+                    <Input type='text' onChange={change} placeholder='Username' name='username' value={login.username}/>
+                    <Input type='password' onChange={change} placeholder='Password' name='password' value={login.password}/>
+                    <Button type='submit'>Login</Button>
+                </form>
+            </Menu.Item>
             
-        </header>
+            
+        </Menu>
     )}
     else {
-        return(<header>
-            <nav>
+        return(
+        <Menu fluid widths={3}>
+            <Menu.Item >
                 <Link to='/'>Home</Link>
+            </Menu.Item>
+            <Menu.Item>
                 <Link to='/postClass'>Post Class</Link>
-            </nav>
-        <p>{currentUser.message}</p>
-        </header>)
+            </Menu.Item>
+            <Menu.Item>
+                <p>{currentUser.message}</p>
+            </Menu.Item>
+        </Menu>)
     }
 }
 
