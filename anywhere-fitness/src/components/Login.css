@@ -1,0 +1,29 @@
+.ui.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page_root {
+  height: 100vh;
+}
+
+.login_root {
+  position: relative;
+  top: 100px;
+}
+
+.login_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  border: solid 1px black;
+}
+
+.header {
+  margin-left: 20vw;
+  margin-right: 20vw;
+}
