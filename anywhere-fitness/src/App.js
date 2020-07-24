@@ -17,7 +17,7 @@ function App() {
         <Link to="/">Home</Link>
         <Link to="/SignUp">Sign Up</Link>
         <Route path="/SignUp"><SignUp /></Route>
-        <Link to="/InstructorLogin">Login</Link>
+        <Link to="/InstructorLogin">Instructor Login</Link>
         <Route path="/InstructorLogin"><InstructorLogin/></Route>
         <Route path="/InstructorApp"><InstrutorApp /></Route>
         <Link to="/InstructorApp">Create Workout</Link>

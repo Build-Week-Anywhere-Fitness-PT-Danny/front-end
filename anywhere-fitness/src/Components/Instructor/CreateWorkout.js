@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import * as Yup from "yup";
-import { Input, Select } from 'semantic-ui-react'
+import { Input } from 'semantic-ui-react'
 
 function CreateWorkout(props) {
 
