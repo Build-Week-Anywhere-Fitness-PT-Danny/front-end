@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import '../Comp/forms.css';
 import axios from 'axios';
-import { Form } from 'semantic-ui-react';
+import { Form, Input,Button } from 'semantic-ui-react';
+import './createAccount.css';
 
 const CreateAccount = props => {
 
@@ -33,16 +33,18 @@ const CreateAccount = props => {
     }
     return(
         <div className='container'>
-            <h2>Create Account</h2>
-            <Form onSubmit={submit} className='form'>
-                <input type='text' onChange={change} placeholder='Username' name='username' value={newUser.name}/>
-                <input type='password' onChange={change} placeholder='Password' name='password' value={newUser.password}/>
-                <div className='box'>
-                    <input type='checkbox'/>
-                    <p>Resgister as a instructor?</p>
-                </div>
-                <button type='submit'>Submit</button>
-            </Form>
+            <div className='box'>
+                <Form onSubmit={submit} className='CAform'>
+                    <h2>Create Account</h2>
+                    <Input type='text' onChange={change} placeholder='Username' name='username' value={newUser.name}/>
+                    <Input type='password' onChange={change} placeholder='Password' name='password' value={newUser.password}/>
+                    <div className='check'>
+                        <Input type='checkbox'/>
+                        <p>Resgister as a instructor?</p>
+                    </div>
+                    <Button type='submit'>Submit</Button>
+                </Form>
+            </div>
         </div>
     )
 }

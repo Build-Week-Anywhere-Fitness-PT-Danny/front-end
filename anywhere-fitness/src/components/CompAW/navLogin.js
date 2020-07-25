@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import './header.css';
+import './navLogin.css';
 import {Menu, Button, Input,} from 'semantic-ui-react';
 
 
@@ -35,7 +35,7 @@ const AltNav = props => {
 
     if(currentUser == null){
     return(
-        <Menu >
+        <Menu size='large'>
             <Menu.Item>
                 <Link to='/' >Home</Link>
             </Menu.Item>

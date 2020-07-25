@@ -1,0 +1,29 @@
+
+.CAform {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    height: 100%;
+    background-color:#1EA896;
+    padding: 2%;
+}
+
+.container {
+    background-image: url('./imgs/rima-kruciene-Tq9Ln3gpiG4-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 480px;
+
+}
+
+.box {
+    width: 45%;
+    height: 400px;
+}

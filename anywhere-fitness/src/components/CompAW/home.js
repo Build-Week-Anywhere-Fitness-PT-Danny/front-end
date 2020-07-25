@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Comp/home.css';
+import './home.css';
 import { Card } from 'semantic-ui-react';
 
 
