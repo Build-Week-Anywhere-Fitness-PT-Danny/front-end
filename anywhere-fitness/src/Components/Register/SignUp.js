@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import * as Yup from "yup";
+import * as Yup from "yup"
+import { Header } from 'semantic-ui-react'
 
-function SignUp(props) {
+function SignUp() {
     //name
     //username
     //password
     // checkbox for client
     // checkbox for instructor(admin)
+
 
     const [values, setValues] = useState({
         fullname: "",
@@ -36,7 +38,7 @@ function SignUp(props) {
           .post("https://reqres.in/api/auth/register", values)
           .then(() => console.log("form submitted success"))
           .catch(err => console.log(err));
-          console.log(values)
+          console.log(values);
     }
 
     const [errors, setErrors] = useState({
@@ -96,6 +98,7 @@ function SignUp(props) {
 return (
     <div>
         <form onSubmit={handleSubmit}>
+          <Header as='h1'>Sign Up</Header>
             <label htmlFor="fullname"> First and Last Name: 
                 <input
                     type="text"
@@ -153,6 +156,7 @@ return (
                 type="submit"
                 name="submit"
             />
+
 
         </form>
     </div>

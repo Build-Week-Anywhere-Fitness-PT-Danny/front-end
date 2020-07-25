@@ -5,7 +5,7 @@ import {Route, Link} from 'react-router-dom'
 import SignUp from './Components/Register/SignUp'
 import Login from './Components/Register/Login'
 import InstrutorApp from './Components/Instructor/InstructorApp'
-
+import ClientApp from './Components/Client/ClientApp'
 
 function App() {
 
@@ -21,6 +21,8 @@ function App() {
         <Route path="/Login"><Login/></Route>
         <Route path="/InstructorApp"><InstrutorApp /></Route>
         <Link to="/InstructorApp">Create Workout</Link>
+        <Route path="/ClientApp"><ClientApp /></Route>
+        <Link to="/ClientApp">Search Classes</Link>
       </div>
     </Router>
   );

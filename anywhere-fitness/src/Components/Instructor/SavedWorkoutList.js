@@ -16,6 +16,7 @@ function SavedWorkoutList(props) {
                     <h3>{data.createClass.duration}</h3>
                     <h3>{data.createClass.intensity}</h3>
                     <h3>{data.createClass.location}</h3>
+                    <h3>{data.createClass.numberOfRegisteredAttendees}</h3>
                     <h3>{data.createClass.maxClassSize}</h3>
                 </div>
             ))}

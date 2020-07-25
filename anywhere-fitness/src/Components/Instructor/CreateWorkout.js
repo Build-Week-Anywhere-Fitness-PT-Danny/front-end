@@ -55,6 +55,7 @@ const formSchema = Yup.object().shape({
     });
   }, [createClass]);
 
+
   const [errors, setErrors] = useState({
     name: "",
     type: "",
@@ -91,8 +92,8 @@ const handleSubmit = event => {
         props.setSavedClass([...props.savedClass,{createClass}])
     }
     axios
-    .post("https://reqres.in/api/classes", createClass)
-    .then(() => console.log("form submitted success"))
+    .post("https://reqres.in/api/api/classes", createClass)
+    .then(() => console.log("form submitted success", createClass))
     .catch(err => console.log(err));
 }
 
@@ -103,7 +104,6 @@ const handleSubmit = event => {
             <form onSubmit={handleSubmit}>
                 <div className="formDiv">
                     <h1>Create Class</h1>
-                    <div class="inputDiv">
                         <Input
                             className="input"
                             type="text"
@@ -113,8 +113,8 @@ const handleSubmit = event => {
                             value={createClass.name}
                         />
                         {errors.name.length > 0 ? (<p>{errors.name}</p>) : null}
-                    </div>
-                    <div class="inputDiv">
+
+
                         <label htmlForm="type">
                         Class Type
                             <select name="type" onChange={handleChange} value={createClass.type} className="input">
@@ -123,8 +123,8 @@ const handleSubmit = event => {
                                 <option value="cycle">cycle</option>
                             </select>
                         </label>
-                    </div>
-                    <div class="inputDiv">
+
+
                         <label htmlForm="startTime">
                         Start Time
                             <select name="startTime" onChange={handleChange} value={createClass.startTime} className="input">
@@ -134,8 +134,7 @@ const handleSubmit = event => {
                                 <option value="9">9 pm</option>
                             </select>
                         </label>
-                    </div>
-                    <div class="inputDiv">
+
                         <label htmlForm="duration">
                         Duration
                             <select name="duration" onChange={handleChange} value={createClass.duration} className="input">
@@ -144,8 +143,7 @@ const handleSubmit = event => {
                                 <option value="90">90 mins</option>
                             </select>
                         </label>
-                    </div>
-                    <div class="inputDiv">
+
                         <label htmlForm="intensity">
                         Intensity
                             <select name="intensity" onChange={handleChange} value={createClass.intensity}>
@@ -154,8 +152,7 @@ const handleSubmit = event => {
                                 <option value="advanced">Advanced</option>
                             </select>
                         </label>
-                    </div>
-                    <div class="inputDiv">
+
                         <Input
                             className="input"
                             type="text"
@@ -165,8 +162,6 @@ const handleSubmit = event => {
                             value={createClass.location}
                         />
                         {errors.location.length > 0 ? (<p>{errors.location}</p>) : null}
-                    </div>
-                    <div class="inputDiv" >
                         <Input
                             className="input"
                             type="text"
@@ -176,7 +171,6 @@ const handleSubmit = event => {
                             value={createClass.maxClassSize}
                         />
                         {errors.maxClassSize.length > 0 ? (<p>{errors.maxClassSize}</p>) : null}
-                    </div>
                     <Input
                         disabled={buttonDisabled}
                         id="submit"
