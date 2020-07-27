@@ -9,12 +9,20 @@
     "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+<<<<<<< HEAD
     "react-hook-form": "^6.0.8",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-swipe-to-delete-component": "^0.5.4",
     "yup": "^0.29.1"
+=======
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "semantic-ui-react": "^1.0.0"
+>>>>>>> f65e856951f4f73f64cef5c656b63c7dbc72c481
   },
   "scripts": {
     "start": "react-scripts start",

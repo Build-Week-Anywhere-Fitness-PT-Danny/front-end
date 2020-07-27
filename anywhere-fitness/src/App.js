@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import './App.css';
 import {BrowserRouter as Router} from 'react-router-dom'
 import {Route, Link} from 'react-router-dom'
@@ -23,6 +24,21 @@ function App() {
         <Link to="/InstructorApp">Create Workout</Link>
         <Route path="/ClientApp"><ClientApp /></Route>
         <Link to="/ClientApp">Search Classes</Link>
+=======
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
+import logo from './logo.svg';
+import Dashboard from './components/Dashboard';
+import Login from './components/Login';
+import './App.css';
+
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Route exact path="/" component={Login} />
+        <PrivateRoute exact path="/protected" component={Dashboard} />
+>>>>>>> f65e856951f4f73f64cef5c656b63c7dbc72c481
       </div>
     </Router>
   );

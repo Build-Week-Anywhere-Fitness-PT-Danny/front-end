@@ -28,6 +28,7 @@
   color: #61dafb;
 }
 
+<<<<<<< HEAD
 form {
   display: flex;
   flex-direction: column;
@@ -80,3 +81,13 @@ input:placeholder {
 }
 
 
+=======
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+>>>>>>> f65e856951f4f73f64cef5c656b63c7dbc72c481
