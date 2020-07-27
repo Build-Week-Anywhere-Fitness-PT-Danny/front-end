@@ -43,7 +43,6 @@ function ClientAvailableWorkouts(props) {
           .required(),
         intensity: Yup
           .string()
-            .min(5,"Must Fill Out Location")
             .required(),
         location: Yup
             .string()
@@ -100,55 +99,53 @@ function ClientAvailableWorkouts(props) {
             <div>
                 <form onSubmit={handleSubmit}>
                     <h1>Hello</h1>
-                <label htmlForm="startTime">
+                    <label htmlForm="startTime">
                         Start Time
-                            <select name="time"  onChange={handleChange}>
+                            <select name="time"  onChange={handleChange} value={searchClass.time}>
                                 <option value="7">7 am</option>
                                 <option value="10">10 am</option>
                                 <option value="6">6 pm</option>
                                 <option value="9">9 pm</option>
                             </select>
-                        </label>
-                        <label htmlForm="duration">
+                    </label>
+                    <label htmlForm="duration">
                         Duration
-                            <select name="duration" onChange={handleChange}  className="input">
+                            <select name="duration" onChange={handleChange}  className="input" value={searchClass.duration}>
                                 <option value="45">45 mins</option>
                                 <option value="60">60 mins</option>
                                 <option value="90">90 mins</option>
                             </select>
-                        </label>
-                        
-                        <label htmlForm="type">
+                    </label>
+                    <label htmlForm="type">
                         Class Type
-                            <select name="type" onChange={handleChange} className="input">
+                            <select name="type" onChange={handleChange} className="input" value={searchClass.type}>
                                 <option value="yoga">Yoga</option>
                                 <option value="strength">Strength</option>
                                 <option value="cycle">cycle</option>
                             </select>
-                        </label>
-                        
-                        <label htmlForm="intensity">
+                    </label>
+                    <label htmlForm="intensity">
                         Intensity
-                            <select name="intensity" onChange={handleChange} >
+                            <select name="intensity" onChange={handleChange} value={searchClass.intensity}>
                                 <option value="beginner" className="option">Beginner</option>
                                 <option value="intermediate">Intermediate</option>
                                 <option value="advanced">Advanced</option>
                             </select>
-                        </label>
-
-                        <Input
-                            className="input"
-                            type="text"
-                            name="location"
-                            placeholder="location"
-                            onChange={handleChange}
-                            value={searchClass.location}
-                        />
+                    </label>
+                    <Input
+                        className="input"
+                        type="text"
+                        name="location"
+                        placeholder="location"
+                        onChange={handleChange}
+                        value={searchClass.location}
+                    />
 
                         <Input
                         id="submit"
                         type="submit"
                         name="submit"
+                        disabled={buttonDisabled}
                     />
                 </form>
             </div>
