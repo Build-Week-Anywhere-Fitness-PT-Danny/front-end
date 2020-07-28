@@ -1,17 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute';
-import logo from './logo.svg';
-import Dashboard from './components/Dashboard';
-import Login from './components/Login';
 import './App.css';
+import {BrowserRouter as Router} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom'
+import InstrutorApp from './components/Components/Instructor/InstructorApp'
+import SignUp from './components/Components/Register/SignUp'
+import ClientApp from './components/Components/Client/ClientApp'
 
 function App() {
+
+
   return (
     <Router>
       <div className="App">
-        <Route exact path="/" component={Login} />
-        <PrivateRoute exact path="/protected" component={Dashboard} />
+        <p>Anywhere Fitness React App</p>
+        <Link to="/">Home</Link>
+        <Link to="/components/Components/Register/SignUp">Sign Up</Link>
+        <Route path="/components/Components/Register/SignUp"><SignUp /></Route>
+        <Route path="/InstructorApp"><InstrutorApp /></Route>
+        <Link to="/InstructorApp">Create Workout</Link>
+        <Route path="/ClientApp"><ClientApp /></Route>
+        <Link to="/ClientApp">Search Classes</Link>
       </div>
     </Router>
   );
