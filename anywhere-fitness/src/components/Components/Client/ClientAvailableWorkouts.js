@@ -145,7 +145,7 @@ function ClientAvailableWorkouts(props) {
                         id="submit"
                         type="submit"
                         name="submit"
-                        disabled={buttonDisabled}
+                        // disabled={buttonDisabled}
                     />
                 </form>
             </div>

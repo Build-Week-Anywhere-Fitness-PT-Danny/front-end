@@ -5,6 +5,9 @@ import {Route, Link} from 'react-router-dom'
 import InstrutorApp from './components/Components/Instructor/InstructorApp'
 import SignUp from './components/Components/Register/SignUp'
 import ClientApp from './components/Components/Client/ClientApp'
+import NavBar from './components/Components/Register/NavBar'
+import ClientLogin from './components/Components/Register/clientLogin'
+
 
 function App() {
 
@@ -13,13 +16,15 @@ function App() {
     <Router>
       <div className="App">
         <p>Anywhere Fitness React App</p>
-        <Link to="/">Home</Link>
-        <Link to="/components/Components/Register/SignUp">Sign Up</Link>
         <Route path="/components/Components/Register/SignUp"><SignUp /></Route>
         <Route path="/InstructorApp"><InstrutorApp /></Route>
-        <Link to="/InstructorApp">Create Workout</Link>
         <Route path="/ClientApp"><ClientApp /></Route>
-        <Link to="/ClientApp">Search Classes</Link>
+        <Route path="/clientLogin"><ClientLogin /></Route>
+        <NavBar />
+          <div className="homeDiv">
+            <Link to="/clientLogin">Login</Link>
+            <Link to="/components/Components/Register/SignUp">Sign Up</Link>
+          </div>
       </div>
     </Router>
   );

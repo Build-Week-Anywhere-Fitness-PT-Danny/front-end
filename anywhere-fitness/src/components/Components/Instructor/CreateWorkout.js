@@ -172,7 +172,7 @@ const handleSubmit = event => {
                         />
                         {errors.maxClassSize.length > 0 ? (<p>{errors.maxClassSize}</p>) : null}
                     <Input
-                        disabled={buttonDisabled}
+                        // disabled={buttonDisabled}
                         id="submit"
                         type="submit"
                         name="submit"

@@ -9,7 +9,7 @@ function Login() {
     let onSubmit= (data) => {
         console.log(data);
         axios
-        .post("https://anywhere-fitness-bw-2020.herokuapp.com/api/auth/register", data)
+        .post("https://reqres.in/api/auth/register", data)
         .then(() => console.log("form submitted success"))
         .catch(err => console.log(err));
     }
@@ -24,7 +24,7 @@ function Login() {
                 />
                 {errors.username && <p>Username is Required</p>}
                 <input
-                    type="text"
+                    type="password"
                     name="password"
                     ref={register({required:true})}
                     />
