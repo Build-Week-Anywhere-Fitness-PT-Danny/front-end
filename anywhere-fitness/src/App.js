@@ -24,6 +24,7 @@ function App() {
           <div className="homeDiv">
             <Link to="/clientLogin">Login</Link>
             <Link to="/components/Components/Register/SignUp">Sign Up</Link>
+            {/* <img src={Images} alt="Girl in a jacket" width="500" height="600" /> */}
           </div>
       </div>
     </Router>

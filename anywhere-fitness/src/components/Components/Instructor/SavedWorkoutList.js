@@ -1,21 +1,31 @@
-import React,{ useState } from 'react'
-import {BrowserRouter as Router} from 'react-router-dom'
-import {Route, Link} from 'react-router-dom'
-import CreateWorkout from './CreateWorkout'
-import SavedWorkoutList from './SavedWorkoutList'
+import React from 'react'
 
-function InstructorApp() {
-    const [savedClass, setSavedClass] = useState([]);
+
+function SavedWorkoutList(props) {
+    // const [savedClass, setSavedClass] = useState([]);
+
     return (
-        <Router>
-             <div>
-                <Link to="/CreateWorkout">Create A Workout Class</Link>
-                <Route to="/CreateWorkout"><CreateWorkout savedClass={savedClass} setSavedClass={setSavedClass} /></Route>
-                <Link to="/SavedWorkoutList">Saved Workouts</Link>
-                <Route path="/SavedWorkoutList"><SavedWorkoutList savedClass={savedClass} /></Route>
+        <div>
+            <div className="savedClassDiv">
+            {props.savedClass.map(data => (
+                <div className="aboutText">
+                <h2>{data.createClass.name}</h2>
+                <p>{data.createClass.type}</p>
+                <p>{data.createClass.StartTime}</p>
+                <p>{data.createClass.duration}</p>
+                <p>{data.createClass.intensity}</p>
+                <p>{data.createClass.location}</p>
+                <p>{data.createClass.numberOfRegisteredAttendess}</p>
+                <p>{data.createClass.maxClassSize}</p>
+                </div>
+            ))}
             </div>
-        </Router>
+        </div>
     )
 }
 
-export default InstructorApp
+export default SavedWorkoutList
+
+// location: "",
+//     numberOfRegisteredAttendees: "",
+//     maxClassSize: ""

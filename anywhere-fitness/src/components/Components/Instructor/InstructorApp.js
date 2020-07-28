@@ -9,10 +9,8 @@ function InstructorApp() {
     return (
         <Router>
              <div>
-                <Link to="/CreateWorkout">Create A Workout Class</Link>
                 <Route to="/CreateWorkout"><CreateWorkout savedClass={savedClass} setSavedClass={setSavedClass} /></Route>
-                <Link to="/SavedWorkoutList">Saved Workouts</Link>
-                <Route path="/SavedWorkoutList"><SavedWorkoutList savedClass={savedClass} /></Route>
+                <SavedWorkoutList savedClass={savedClass} />
             </div>
         </Router>
     )

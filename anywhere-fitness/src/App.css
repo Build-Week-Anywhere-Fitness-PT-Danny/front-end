@@ -79,9 +79,12 @@
 form {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  max-width: 300px;
-  margin: 0 auto;
+  width: 100%;
+  margin-bottom: 10px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
 }
 
 label {
@@ -104,25 +107,53 @@ textarea {
   padding: 10px;
   transition: all 0.3s;
   font-size: .8rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 3px;
   background-color: white;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
-select {
-  height: 40px;
-  width: 325px;
+
+
+
+.savedClassDiv {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: space-evenly;
 }
 
-select:focus {
-  outline: none;
-  border-color: #1ee7e2;
+.aboutText {
+  background: white;
+  width: 100%;
+  max-width: 250px;
+  padding: 10px;
+  margin: 16px auto;
+  text-align: center;
+  font-size:20px;
 }
 
-input:focus {
-  outline: none;
-  border-color: #1ee7e2;
+body {
+  background-color: rgb(231, 231, 231);
 }
 
-input:placeholder {
-  color: #a8b2b2;
+.formDiv {
+  background-color: white;
+
+}
+
+h1 {
+  color: #41b3a3;
+  font-family: monospace;
+  font-size: 40px;
+}
+
+.submitBtn {
+  background-color: #41b3a3;
+  padding: 10px;
+  font-size: 16px;
+  color: yellow;
+  font-weight: bold;
 }

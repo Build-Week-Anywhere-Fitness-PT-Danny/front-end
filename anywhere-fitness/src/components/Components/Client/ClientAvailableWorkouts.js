@@ -97,7 +97,7 @@ function ClientAvailableWorkouts(props) {
 
         return (
             <div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="formDiv">
                     <h1>Hello</h1>
                     <label htmlForm="startTime">
                         Start Time
@@ -141,11 +141,13 @@ function ClientAvailableWorkouts(props) {
                         value={searchClass.location}
                     />
 
-                        <Input
+                        <input
                         id="submit"
                         type="submit"
                         name="submit"
+                        className="submitBtn"
                         // disabled={buttonDisabled}
+                        style={{ width: "250px" }}
                     />
                 </form>
             </div>

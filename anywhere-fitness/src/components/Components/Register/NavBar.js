@@ -4,6 +4,8 @@ import { Menu } from 'semantic-ui-react'
 import {Route, Link} from 'react-router-dom'
 
 function NavBar() {
+
+    
     return (
         <Menu>
             <Menu.Item>
@@ -11,12 +13,14 @@ function NavBar() {
             </Menu.Item>
 
             <Menu.Item>
-                <Link to="/InstructorApp">Create Workout</Link>
+                <Link to="/InstructorApp">Instructor</Link>
             </Menu.Item>
 
             <Menu.Item>
                 <Link to="/ClientApp">Search Classes</Link>
             </Menu.Item>
+
+        
         </Menu>
     )
 }

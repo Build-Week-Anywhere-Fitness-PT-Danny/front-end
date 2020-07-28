@@ -101,9 +101,10 @@ const handleSubmit = event => {
 
     return (
         <div class="container">
-            <form onSubmit={handleSubmit}>
-                <div className="formDiv">
+            <form onSubmit={handleSubmit} className="formDiv">
+                <div >
                     <h1>Create Class</h1>
+                    <label htmlFor="name"> Class Name :
                         <Input
                             className="input"
                             type="text"
@@ -111,9 +112,10 @@ const handleSubmit = event => {
                             placeholder="Class Name"
                             onChange={handleChange}
                             value={createClass.name}
+                            style={{ width: "250px" }}
                         />
                         {errors.name.length > 0 ? (<p>{errors.name}</p>) : null}
-
+                      </label>
 
                         <label htmlForm="type">
                         Class Type
@@ -160,8 +162,10 @@ const handleSubmit = event => {
                             placeholder="location"
                             onChange={handleChange}
                             value={createClass.location}
+                            style={{ width: "250px" }}
                         />
                         {errors.location.length > 0 ? (<p>{errors.location}</p>) : null}
+                        <br />
                         <Input
                             className="input"
                             type="text"
@@ -169,15 +173,21 @@ const handleSubmit = event => {
                             placeholder="Max Class Size"
                             onChange={handleChange}
                             value={createClass.maxClassSize}
+                            style={{ width: "250px" }}
+                            
                         />
                         {errors.maxClassSize.length > 0 ? (<p>{errors.maxClassSize}</p>) : null}
-                    <Input
-                        // disabled={buttonDisabled}
+                        <br />
+                    <input
+                        disabled={buttonDisabled}
                         id="submit"
                         type="submit"
                         name="submit"
+                        className="submitBtn"
                     />
-                </div>                   
+                     <br />
+                </div> 
+                <br />                 
             </form>
         </div>
     )
