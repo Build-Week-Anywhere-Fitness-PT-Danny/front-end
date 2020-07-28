@@ -22,7 +22,9 @@ const Login = (props) => {
         credentials
       )
       .then((res) => {
+        console.log(res);
         localStorage.setItem('token', res.data.payload);
+        localStorage.setItem('admin', res.data.user.admin);
         props.history.push('/protected');
       })
       .catch((err) => console.log({ err }));

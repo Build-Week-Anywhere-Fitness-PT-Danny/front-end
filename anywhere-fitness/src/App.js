@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
-import logo from './logo.svg';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import './App.css';
