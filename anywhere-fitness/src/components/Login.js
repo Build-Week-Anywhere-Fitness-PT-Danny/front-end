@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Image, Container, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import logo from '../assets/logo_size.jpg';
+import { getClasses } from '../actions/actions';
 import './Login.css';
 
 const Login = (props) => {

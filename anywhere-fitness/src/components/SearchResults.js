@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { Search } from 'semantic-ui-react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getClasses } from '../actions/actions';
 import './SearchResults.css';
 
-const SearchResults = (props) => {
-  const { results } = props;
-
+const SearchResults = ({ getClasses, results, isFetching }) => {
+  useEffect(() => {
+    getClasses();
+  }, [getClasses]);
   // let itemsToRender;
   // if (results) {
   //   itemsToRender = results.map((item, key) => {
@@ -20,10 +22,11 @@ const SearchResults = (props) => {
   //   location: 'park',
   //   numberOfRegisteredAttendees: 7,
   //   maxClassSize: 12,
-
+  if (isFetching) {
+    return <div className="search_result_container"></div>;
+  }
   return (
     <div className="search_result_container">
-      {console.log(results)}
       {results &&
         results.map((item, key) => {
           return (
@@ -43,4 +46,12 @@ const SearchResults = (props) => {
   );
 };
 
-export default SearchResults;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    results: state.results,
+    isFetching: state.isFetching,
+  };
+};
+
+export default connect(mapStateToProps, { getClasses })(SearchResults);
