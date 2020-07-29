@@ -35,8 +35,8 @@ const AltNav = props => {
 
     if(currentUser == null){
     return(
-        <Menu size='large' color='red'>
-            <Menu.Item color='red'>
+        <Menu size='large'>
+            <Menu.Item>
                 <Link to='/' >Home</Link>
             </Menu.Item>
             <Menu.Item >

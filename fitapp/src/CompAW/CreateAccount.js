@@ -42,7 +42,7 @@ const CreateAccount = props => {
                         <Input type='checkbox'/>
                         <p>Resgister as a instructor?</p>
                     </div>
-                    <button className='b1' type='submit'>Submit</button>
+                    <Button type='submit'>Submit</Button>
                 </Form>
             </div>
         </div>

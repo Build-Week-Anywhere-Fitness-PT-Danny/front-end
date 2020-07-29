@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import './altApp.css'; 
+import './App.css'; 
 import {Switch, Route, Link} from 'react-router-dom';
-import CreateAccount from './CreateAccount';
-import CreateClass from './CreateClass';
-import AltNav from './navLogin';
-import HomePage from './home';
+import CreateAccount from './CompAW/CreateAccount';
+import CreateClass from './CompAW/CreateClass';
+import AltNav from './CompAW/navLogin';
+import HomePage from './CompAW/home';
 import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css'
 
-function AltApp() {
+function App() {
   const [posts, setPosts] = useState([]);
   
   useEffect(() => {
@@ -46,4 +46,4 @@ function AltApp() {
   );
 }
 
-export default AltApp;
+export default App;

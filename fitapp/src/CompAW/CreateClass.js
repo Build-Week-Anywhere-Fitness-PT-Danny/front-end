@@ -62,7 +62,7 @@ const CreateClass = props => {
                 </div>
                 <Input type='text' placeholder='Location' name='location' onChange={change} value={newClass.location}/>
                 <Input type='number' placeholder='Max class Size' name='maxClassSize' onChange={change} value={newClass.maxClassSize}/>
-                <button className='b1' type='submit'>Post Session</button>
+                <Button type='submit'>Post Session</Button>
             </Form>
         </div>
         
