@@ -13,7 +13,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <div className="App" >
         <p>Anywhere Fitness React App</p>
         <NavBar />
           <div className="homeDiv">

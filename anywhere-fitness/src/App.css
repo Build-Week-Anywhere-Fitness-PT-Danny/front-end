@@ -2,7 +2,7 @@
   text-align: center;
   background-image: url(../src/Images/stretching.jpg);
   background-size: cover;
-  width: 1800px; 
+  width: 1400px; 
   height:1000px; 
   margin-left: auto;
   margin-right: auto;
@@ -150,6 +150,7 @@ body {
 
 .formDiv {
   background-color: white;
+  opacity: 95%;
 
 }
 

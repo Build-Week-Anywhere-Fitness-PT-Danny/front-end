@@ -1,7 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-import { Header } from 'semantic-ui-react'
 
 function Login() {
     let { register, handleSubmit, errors} = useForm();
@@ -15,8 +14,8 @@ function Login() {
     }
     return (
         <div>
-            <Header as="h1">Log In</Header>
             <form onSubmit={handleSubmit(onSubmit)}>
+            <h2>Log In</h2>
                 <input
                     type="text"
                     name="username"

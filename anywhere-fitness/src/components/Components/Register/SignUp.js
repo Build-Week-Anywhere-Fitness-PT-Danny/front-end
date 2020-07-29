@@ -97,8 +97,8 @@ function SignUp() {
 
 return (
     <div>
-        <form onSubmit={handleSubmit}>
-          <Header as='h1'>Sign Up</Header>
+        <form onSubmit={handleSubmit} className="formDiv">
+          <h1>Sign Up</h1>
             <label htmlFor="fullname"> First and Last Name: 
                 <input
                     type="text"
@@ -155,6 +155,7 @@ return (
                 id="submit"
                 type="submit"
                 name="submit"
+                className="submitBtn"
             />
 
 
