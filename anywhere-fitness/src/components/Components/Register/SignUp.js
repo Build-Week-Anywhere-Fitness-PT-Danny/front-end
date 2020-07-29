@@ -37,7 +37,6 @@ function SignUp() {
         axios
           .post("https://anywhere-fitness-bw-2020.herokuapp.com/api/auth/register", values)
           .then(() => console.log("form submitted success"))
-          .catch(err => console.log(err));
           console.log(values);
     }
 

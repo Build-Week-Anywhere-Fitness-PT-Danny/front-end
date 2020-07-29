@@ -14,14 +14,13 @@ function App() {
   return (
     <Router>
       <div className="App" >
-        <p>Anywhere Fitness React App</p>
         <NavBar />
           <div className="homeDiv">
-              <div>
-                <Link to="/clientLogin" >Login</Link>
+              <div className="linkDiv" >
+                <Link to="/clientLogin" className="linkStyle">Login</Link>
               </div>
-              <div>
-                <Link to="/components/Components/Register/SignUp">Sign Up</Link>
+              <div className="linkDiv">
+                <Link to="/components/Components/Register/SignUp" className="linkStyle">Register</Link>
               </div>
           </div>
           <Route path="/clientLogin"><ClientLogin /></Route>

@@ -126,10 +126,12 @@ textarea {
 .savedClassDiv {
   display: flex;
   flex-wrap: wrap;
-  width: 50%;
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
   justify-content: space-evenly;
+  background: lightgrey;
+  margin-top: 5%;
 }
 
 .aboutText {
@@ -172,4 +174,14 @@ h1 {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.linkDiv {
+  font-size: 30px;
+  padding: 2%;
+}
+
+.linkStyle {
+  color: white;
+  text-decoration: underline darkslategrey;
 }

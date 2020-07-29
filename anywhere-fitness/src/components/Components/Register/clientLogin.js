@@ -8,14 +8,14 @@ function Login() {
     let onSubmit= (data) => {
         console.log(data);
         axios
-        .post("https://reqres.in/api/auth/register", data)
+        .post("https://anywhere-fitness-bw-2020.herokuapp.com/api/auth/register", data)
         .then(() => console.log("form submitted success"))
         .catch(err => console.log(err));
     }
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
-            <h2>Log In</h2>
+            <h2>Login</h2>
                 <input
                     type="text"
                     name="username"
@@ -30,6 +30,7 @@ function Login() {
                 {errors.password && <p>Password is Required</p>}
                 <input
                     type="submit"
+                    className="submitBtn"
                 />
             </form>
         </div>
