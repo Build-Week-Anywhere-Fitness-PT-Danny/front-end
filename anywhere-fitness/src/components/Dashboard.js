@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Image,
   Container,
@@ -8,14 +8,14 @@ import {
   Button,
   Icon,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-import _ from 'lodash';
+import { Link, useHistory } from 'react-router-dom';
 import logo from '../assets/logo_size.jpg';
 import SearchResults from './SearchResults';
+import { connect } from 'react-redux';
+import { addValue, addSelect, getClasses } from '../actions/actions';
 import './Dashboard.css';
 
 const options = [
-  { key: 'all', text: 'All', value: 'all' },
   { key: 'name', text: 'Name', value: 'name' },
   { key: 'type', text: 'Type', value: 'type' },
   { key: 'time', text: 'Time', value: 'time' },
@@ -24,167 +24,112 @@ const options = [
   { key: 'location', text: 'Location', value: 'location' },
 ];
 
-const source = [
-  {
-    name: 'Yoga',
-    type: 'stretching',
-    startTime: '2:00pm',
-    duration: '1 hour',
-    intensity: 'easy',
-    location: 'park',
-    numberOfRegisteredAttendees: 7,
-    maxClassSize: 12,
-  },
-  {
-    name: 'Pilates',
-    type: 'cardio',
-    startTime: '1:00pm',
-    duration: '1 hour',
-    intensity: 'medium',
-    location: 'mall',
-    numberOfRegisteredAttendees: 11,
-    maxClassSize: 20,
-  },
-  {
-    name: 'Jogging',
-    type: 'cardio',
-    startTime: '3:00pm',
-    duration: '2 hour',
-    intensity: 'medium',
-    location: 'beach',
-    numberOfRegisteredAttendees: 7,
-    maxClassSize: 12,
-  },
-  {
-    name: 'Pilates',
-    type: 'cardio',
-    startTime: '1:00pm',
-    duration: '1 hour',
-    intensity: 'medium',
-    location: 'mall',
-    numberOfRegisteredAttendees: 11,
-    maxClassSize: 20,
-  },
-  {
-    name: 'Yoga',
-    type: 'stretching',
-    startTime: '2:00pm',
-    duration: '1 hour',
-    intensity: 'easy',
-    location: 'park',
-    numberOfRegisteredAttendees: 7,
-    maxClassSize: 12,
-  },
-  {
-    name: 'Pilates',
-    type: 'cardio',
-    startTime: '1:00pm',
-    duration: '1 hour',
-    intensity: 'medium',
-    location: 'mall',
-    numberOfRegisteredAttendees: 11,
-    maxClassSize: 20,
-  },
-];
+const adminValue = localStorage.getItem('admin');
 
-const initialState = { isLoading: false, results: [], value: '' };
-const user = localStorage.getItem('admin');
+const Dashboard = ({ addValue, getClasses, addSelect }) => {
+  useEffect(() => {
+    getClasses();
+  }, [getClasses]);
 
-export default class Dashboard extends Component {
-  constructor() {
-    super();
-    this.state = {
-      initialState: {
-        isLoading: false,
-        results: [],
-        value: '',
-      },
-      selectValue: 'all',
-    };
-  }
-  handleResultSelect = (e, { result }) => this.setState({ value: result.name });
+  let history = useHistory();
 
-  handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value });
+  const [selectValue, setSelectValue] = useState();
+  const [selected, setSelected] = useState();
 
-    setTimeout(() => {
-      if (this.state.value.length < 1) return this.setState(initialState);
-
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
-      const isMatch = (result) => re.test(result.name);
-
-      this.setState({
-        isLoading: false,
-        results: _.filter(source, isMatch),
-      });
-    }, 300);
+  const handleSearchChange = (e) => {
+    e.preventDefault();
+    setSelectValue(e.target.value);
   };
 
-  handleSelectChange = (e) => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addValue(selectValue);
+    addSelect(selected);
+  };
 
-  handleResults = (e) => {};
+  const handleSelectChange = (e, { value }) => {
+    e.preventDefault();
+    setSelected(value);
+  };
 
-  render() {
-    const { isLoading, value, results } = this.state;
-    {
-      console.log(user);
-    }
+  const handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    history.push('/');
+  };
+
+  function LoggedIn(props) {
     return (
-      <div className="page_root">
-        <header className="dashboard_header">
-          <Image src={logo}></Image>
-          <div className="header_buttons">
-            <Button className="class_button" animated="fade">
-              <Button.Content visible>Create a Class</Button.Content>
-              <Button.Content hidden>
-                <Icon name="plus" />
-              </Button.Content>
-            </Button>
-            <Button as={Link} to="/" className="logout_button" animated>
-              <Button.Content visible>Logout</Button.Content>
-              <Button.Content hidden>
-                <Icon name="arrow right" />
-              </Button.Content>
-            </Button>
-          </div>
-        </header>
-        <div className="dashboard_root">
-          <Container className="left_dashboard">
-            {/* <Search
-              fluid
-              icon="search"
-              className="dashboard_search"
-              placeholder="Search..."
-              loading={isLoading}
-              onResultSelect={this.handleResultSelect}
-              onSearchChange={_.debounce(this.handleSearchChange, 500, {
-                leading: true,
-              })}
-              results={results}
-              value={value}
-            ></Search>
-            <SearchResults returnResults={this.returnResults} /> */}
-            <Form className="search_form">
-              <Input
-                type="text"
-                placeholder="Search..."
-                onChange={this.handleSearchChange}
-                action
-              >
-                <input />
-                <Select
-                  onChange={this.handleSelectChange}
-                  options={options}
-                  defaultValue="all"
-                />
-                <Button type="submit">Search</Button>
-              </Input>
-            </Form>
-            <SearchResults results={results} />
-          </Container>
-          <Container className="right_dashboard"></Container>
-        </div>
-      </div>
+      <Button className="class_button" animated="fade">
+        <Button.Content visible>Create a Class</Button.Content>
+        <Button.Content hidden>
+          <Icon name="plus" />
+        </Button.Content>{' '}
+      </Button>
     );
   }
-}
+
+  function CreateClassButton(props) {
+    const isAdmin = props.isAdmin;
+    console.log(isAdmin);
+    if (isAdmin) {
+      return <LoggedIn />;
+    }
+    return null;
+  }
+
+  return (
+    <div className="page_root">
+      <header className="dashboard_header">
+        <Image src={logo}></Image>
+        <div className="header_buttons">
+          <CreateClassButton isAdmin={adminValue} />
+
+          <Button className="logout_button" onClick={handleLogout} animated>
+            <Button.Content visible>Logout</Button.Content>
+            <Button.Content hidden>
+              <Icon name="arrow right" />
+            </Button.Content>
+          </Button>
+        </div>
+      </header>
+      <div className="dashboard_root">
+        <Container className="left_dashboard">
+          <Form className="search_form" onSubmit={handleSubmit}>
+            <Input
+              type="text"
+              placeholder="Search..."
+              name="values"
+              value={selectValue}
+              onChange={handleSearchChange}
+              action
+            >
+              <input />
+              <Select
+                onChange={handleSelectChange}
+                options={options}
+                value={selected}
+                defaultValue="name"
+              />
+              <Button type="submit">Search</Button>
+            </Input>
+          </Form>
+          <SearchResults />
+        </Container>
+        <Container className="right_dashboard"></Container>
+      </div>
+    </div>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    results: state.results,
+    newResults: state.newResults,
+    value: state.value,
+  };
+};
+
+const mapDispatchToProps = { addValue, getClasses, addSelect };
+
+export default connect(null, mapDispatchToProps)(Dashboard);

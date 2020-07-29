@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Image, Container, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import logo from '../assets/logo_size.jpg';
-import { getClasses } from '../actions/actions';
 import './Login.css';
 
 const Login = (props) => {
@@ -26,6 +25,7 @@ const Login = (props) => {
         console.log(res);
         localStorage.setItem('token', res.data.payload);
         localStorage.setItem('admin', res.data.user.admin);
+        console.log(localStorage);
         props.history.push('/protected');
       })
       .catch((err) => console.log({ err }));

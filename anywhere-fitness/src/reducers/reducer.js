@@ -3,34 +3,32 @@ import {
   FETCHING_CLASSES_SUCCESS,
   FETCHING_CLASSES_FAILURE,
   ADD_VALUE,
+  ADD_SELECT,
+  UPDATE_RESULTS,
 } from '../actions/actions';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 const initialState = {
   isFetching: false,
   results: [],
-  newResults: [
-    {
-      name: 'Pilates',
-      type: 'cardio',
-      startTime: '1:00pm',
-      duration: '1 hour',
-      intensity: 'medium',
-      location: 'mall',
-      numberOfRegisteredAttendees: 11,
-      maxClassSize: 20,
-    },
-  ],
+  newResults: [],
   error: '',
   values: '',
-  select: 'all',
+  select: 'name',
 };
 
 const filterResults = (value, resultsArray) => {
-  const re = new RegExp(_.escapeRegExp(value), 'i');
-  const isMatch = (result) => re.test(result.title);
-  const compare = _.filter(resultsArray, isMatch);
-  return compare;
+  // const re = new RegExp(_.escapeRegExp(value), 'i');
+  // const isMatch = (result) => re.test(result.title);
+  // const compare = _.filter(resultsArray, isMatch);
+  // console.log(compare);
+  // return compare;
+  let map = [];
+  return (map = resultsArray
+    .filter((resultsArray) => resultsArray.includes(value))
+    .map((filteredArray) => {
+      return filteredArray;
+    }));
 };
 
 export const reducer = (state = initialState, action) => {
@@ -44,7 +42,7 @@ export const reducer = (state = initialState, action) => {
     case FETCHING_CLASSES_SUCCESS:
       return {
         ...state,
-        results: [...state.results, action.payload],
+        results: action.payload,
         isFetching: false,
       };
     case FETCHING_CLASSES_FAILURE:
@@ -53,7 +51,16 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         values: action.payload,
-        newResults: filterResults(action.payload, state.results),
+      };
+    case ADD_SELECT:
+      return {
+        ...state,
+        select: action.payload,
+      };
+    case UPDATE_RESULTS:
+      return {
+        ...state,
+        newResults: action.payload,
       };
     default:
       return state;

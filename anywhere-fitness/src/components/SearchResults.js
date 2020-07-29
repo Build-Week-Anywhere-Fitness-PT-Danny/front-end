@@ -1,34 +1,48 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getClasses } from '../actions/actions';
 import './SearchResults.css';
 
-const SearchResults = ({ getClasses, results, isFetching }) => {
-  useEffect(() => {
-    getClasses();
-  }, [getClasses]);
-  // let itemsToRender;
-  // if (results) {
-  //   itemsToRender = results.map((item, key) => {
-  //     return <div key={key}>{item.title}</div>;
-  //   });
-  // }
+const SearchResults = ({ isFetching, values, results, select }) => {
+  const [newResults, setNewResults] = useState();
 
-  // name: 'Yoga',
-  //   type: 'stretching',
-  //   startTime: '2:00pm',
-  //   duration: '1 hour',
-  //   intensity: 'easy',
-  //   location: 'park',
-  //   numberOfRegisteredAttendees: 7,
-  //   maxClassSize: 12,
-  if (isFetching) {
-    return <div className="search_result_container"></div>;
-  }
+  useEffect(() => {
+    if (select === 'name') {
+      const filter = results.filter((item) =>
+        item.name.toLowerCase().includes(values)
+      );
+      setNewResults(filter);
+    } else if (select === 'type') {
+      const filter = results.filter((item) =>
+        item.type.toLowerCase().includes(values)
+      );
+      setNewResults(filter);
+    } else if (select === 'time') {
+      const filter = results.filter((item) =>
+        item.startTime.toLowerCase().includes(values)
+      );
+      setNewResults(filter);
+    } else if (select === 'duration') {
+      const filter = results.filter((item) =>
+        item.duration.toLowerCase().includes(values)
+      );
+      setNewResults(filter);
+    } else if (select === 'intensity') {
+      const filter = results.filter((item) =>
+        item.intensity.toLowerCase().includes(values)
+      );
+      setNewResults(filter);
+    } else if (select === 'location') {
+      const filter = results.filter((item) =>
+        item.location.toLowerCase().includes(values)
+      );
+      setNewResults(filter);
+    }
+  }, [values]);
+
   return (
     <div className="search_result_container">
-      {results &&
-        results.map((item, key) => {
+      {newResults &&
+        newResults.map((item, key) => {
           return (
             <div className="search_result_item" key={key}>
               <h3>{item.name}</h3>
@@ -50,8 +64,10 @@ const mapStateToProps = (state) => {
   console.log(state);
   return {
     results: state.results,
+    values: state.values,
+    select: state.select,
     isFetching: state.isFetching,
   };
 };
 
-export default connect(mapStateToProps, { getClasses })(SearchResults);
+export default connect(mapStateToProps, {})(SearchResults);
