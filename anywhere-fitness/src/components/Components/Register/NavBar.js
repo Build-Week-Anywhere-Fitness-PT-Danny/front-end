@@ -13,6 +13,7 @@ function NavBar() {
             </Menu.Item>
 
             <Menu.Item>
+                <Route path="/InstructorApp"></Route>
                 <Link to="/InstructorApp">Instructor</Link>
             </Menu.Item>
 

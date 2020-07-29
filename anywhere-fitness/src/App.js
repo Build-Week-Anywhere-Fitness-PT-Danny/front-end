@@ -8,7 +8,6 @@ import ClientApp from './components/Components/Client/ClientApp'
 import NavBar from './components/Components/Register/NavBar'
 import ClientLogin from './components/Components/Register/clientLogin'
 
-
 function App() {
 
 
@@ -16,16 +15,19 @@ function App() {
     <Router>
       <div className="App">
         <p>Anywhere Fitness React App</p>
-        <Route path="/components/Components/Register/SignUp"><SignUp /></Route>
-        <Route path="/InstructorApp"><InstrutorApp /></Route>
-        <Route path="/ClientApp"><ClientApp /></Route>
-        <Route path="/clientLogin"><ClientLogin /></Route>
         <NavBar />
           <div className="homeDiv">
-            <Link to="/clientLogin">Login</Link>
-            <Link to="/components/Components/Register/SignUp">Sign Up</Link>
-            {/* <img src={Images} alt="Girl in a jacket" width="500" height="600" /> */}
+              <div>
+                <Link to="/clientLogin" >Login</Link>
+              </div>
+              <div>
+                <Link to="/components/Components/Register/SignUp">Sign Up</Link>
+              </div>
           </div>
+          <Route path="/clientLogin"><ClientLogin /></Route>
+          <Route path="/components/Components/Register/SignUp"><SignUp /></Route>
+          <Route path="/InstructorApp"><InstrutorApp /></Route>
+          <Route path="/ClientApp"><ClientApp /></Route>
       </div>
     </Router>
   );
