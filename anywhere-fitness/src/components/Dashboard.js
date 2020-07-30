@@ -79,16 +79,6 @@ const Dashboard = ({ addValue, getClasses, addSelect, admin }) => {
     );
   }
 
-  // function CreateClassButton(props) {
-  //   const isAdmin = props.isAdmin;
-  //   console.log(isAdmin);
-  //   if (isAdmin) {
-  //     return <LoggedAdmin />;
-  //   }
-  //   return null;
-  // }
-  console.log(admin);
-
   return (
     <div className="page_root">
       <header className="dashboard_header">
