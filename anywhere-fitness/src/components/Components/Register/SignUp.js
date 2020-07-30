@@ -105,6 +105,7 @@ return (
                     value={values.fullname}
                     onChange={handleChange}
                     error={errors.fullname}
+                    style={{ width: "300px" }}
                 />
              {errors.fullname.length > 0 ?(<p>{errors.fullname}</p>) : null }
             </label>
@@ -117,6 +118,7 @@ return (
                     value={values.username}
                     onChange={handleChange}
                     error={errors.username}
+                    style={{ width: "300px" }}
                 />
               {errors.username.length > 0 ? (<p>{errors.username}</p>): null }
             </label>
@@ -128,6 +130,7 @@ return (
                     value={values.password}
                     onChange={handleChange}
                     error={errors.password}
+                    style={{ width: "300px" }}
                 />
             {errors.password.length >0 ? (<p>{errors.password}</p>) :null}
             </label>  
@@ -137,7 +140,8 @@ return (
                 type="checkbox" 
                 name="client"
                 value={values.client}
-                onChange={handleChange} />
+                onChange={handleChange}
+                />
               </label>
             <label htmlFor="admin"> 
               Instructor: 

@@ -117,7 +117,7 @@ const handleSubmit = event => {
                         {errors.name.length > 0 ? (<p>{errors.name}</p>) : null}
                       </label>
 
-                        <label htmlForm="type">
+                        <label htmlFor="type">
                         Class Type
                             <select name="type" onChange={handleChange} value={createClass.type} className="input">
                                 <option value="yoga">Yoga</option>
@@ -127,7 +127,7 @@ const handleSubmit = event => {
                         </label>
 
 
-                        <label htmlForm="startTime">
+                        <label htmlFor="startTime">
                         Start Time
                             <select name="startTime" onChange={handleChange} value={createClass.startTime} className="input">
                                 <option value="7">7 am</option>
@@ -137,7 +137,7 @@ const handleSubmit = event => {
                             </select>
                         </label>
 
-                        <label htmlForm="duration">
+                        <label htmlFor="duration">
                         Duration
                             <select name="duration" onChange={handleChange} value={createClass.duration} className="input">
                                 <option value="45">45 mins</option>
@@ -146,7 +146,7 @@ const handleSubmit = event => {
                             </select>
                         </label>
 
-                        <label htmlForm="intensity">
+                        <label htmlFor="intensity">
                         Intensity
                             <select name="intensity" onChange={handleChange} value={createClass.intensity}>
                                 <option value="beginner" className="option">Beginner</option>

@@ -19,7 +19,6 @@ function NavBar() {
             <Menu.Item>
                 <Link to="/ClientApp" className="navBarLinks">Search Classes</Link>
             </Menu.Item>
-
         
         </Menu>
     )

@@ -17,12 +17,14 @@ function Login() {
             <form onSubmit={handleSubmit(onSubmit)}>
             <h1>Login</h1>
                 <input
+                    placeholder="Username"
                     type="text"
                     name="username"
                     ref={register({required: true})}
                 />
                 {errors.username && <p>Username is Required</p>}
                 <input
+                    placeholder="Password"
                     type="password"
                     name="password"
                     ref={register({required:true})}

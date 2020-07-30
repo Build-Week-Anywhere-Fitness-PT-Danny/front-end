@@ -99,17 +99,18 @@ function ClientAvailableWorkouts(props) {
         return (
             <div>
                 <form onSubmit={handleSubmit} className="formDiv">
-                    <h1>Hello</h1>
-                    <label htmlForm="startTime">
+                    <h1>Search Classes</h1>
+                    <label htmlFor="startTime" style={{ width: "250px" }}>
                         Start Time
                             <select name="time"  onChange={handleChange} value={searchClass.time}>
                                 <option value="7">7 am</option>
                                 <option value="10">10 am</option>
                                 <option value="6">6 pm</option>
                                 <option value="9">9 pm</option>
+                                
                             </select>
                     </label>
-                    <label htmlForm="duration">
+                    <label htmlFor="duration"  style={{ width: "250px" }}>
                         Duration
                             <select name="duration" onChange={handleChange}  className="input" value={searchClass.duration}>
                                 <option value="45">45 mins</option>
@@ -117,7 +118,7 @@ function ClientAvailableWorkouts(props) {
                                 <option value="90">90 mins</option>
                             </select>
                     </label>
-                    <label htmlForm="type">
+                    <label htmlFor="type"  style={{ width: "250px" }}>
                         Class Type
                             <select name="type" onChange={handleChange} className="input" value={searchClass.type}>
                                 <option value="yoga">Yoga</option>
@@ -125,7 +126,7 @@ function ClientAvailableWorkouts(props) {
                                 <option value="cycle">cycle</option>
                             </select>
                     </label>
-                    <label htmlForm="intensity">
+                    <label htmlFor="intensity"  style={{ width: "250px" }}>
                         Intensity
                             <select name="intensity" onChange={handleChange} value={searchClass.intensity}>
                                 <option value="beginner" className="option">Beginner</option>
@@ -140,6 +141,7 @@ function ClientAvailableWorkouts(props) {
                         placeholder="location"
                         onChange={handleChange}
                         value={searchClass.location}
+                        style={{ width: "250px" }}
                     />
                     {errors.location.length > 0 ? (<p>{errors.location}</p>) : null}
 
@@ -147,8 +149,7 @@ function ClientAvailableWorkouts(props) {
                         id="submit"
                         type="submit"
                         name="submit"
-                        className="submitBtn"
-                        disabled={buttonDisabled}
+                        className="submitBtn"  
                         style={{ width: "250px" }}
                     />
                 </form>
