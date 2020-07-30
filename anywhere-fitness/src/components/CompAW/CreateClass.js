@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { Form, Input, Button } from 'semantic-ui-react';
 import '../CompAW/createClass.css';
@@ -14,25 +14,64 @@ const CreateClass = props => {
         duration: '',
         location: '',
         maxClassSize: '',
+        intensity: '',
     }
+
+    const classSchema = yup.object().shape( {
+        name: yup.string().required('Name is required'),
+        type: yup.string().required('type is required'),
+        startTime: yup.string().required('start time is required'),
+        duration: yup.string().required('duration is required'),
+        location: yup.string().required('location is required'),
+        maxClassSize: yup.number().required('Class size is required'),
+        intensity: yup.number().required(),
+    });
+
     const [newClass,setNewClass] = useState(defaultClass);
+    const [errors, setErrors] = useState([]);
+    const [buttonOff, buttonTog] = useState(true);
+ 
+    const validateField = e => {
+        e.persist();
+        
+        yup
+          .reach(classSchema, e.target.name)
+          .validate(e.target.value)
+          .then(valid =>
+            setErrors({
+              ...errors,
+              [e.target.name]: ""
+            })
+          )
+          .catch(error => {
+            console.log(error, e.target.name);
+            setErrors({
+              ...errors,
+              [e.target.name]: error.errors[0]
+            })
+          })}
+
     const change = e => {
         setNewClass({
             ...newClass,
             [e.target.name] : e.target.value}
         );
+        validateField(e);
     }
 
     const submit = e => {
-        e.preventDefault();
         axios.post(`https://anywhere-fitness-bw-2020.herokuapp.com/api/auth/classes`,newClass)
         .then((res) => {
-            console.log('session posted'); 
+            console.log('session posted',res); 
         })
         .catch(er => {
             console.log('there was an error',er);
         })
     }
+
+    useEffect(() => {
+        classSchema.isValid(newClass).then(valid => buttonTog(!valid));
+    }, [newClass]);
 
     return(
         
@@ -52,7 +91,7 @@ const CreateClass = props => {
                         <option value='2 H'>2 H</option>
                     </select>
                 </div>
-                <div className='selectbox'>
+                <div className='selectbox' onChange={change}>
                     <p>Intensity</p>
                     <select name='intensity'>
                         <option value='1'>★☆☆☆</option>
@@ -63,7 +102,7 @@ const CreateClass = props => {
                 </div>
                 <Input type='text' placeholder='Location' name='location' onChange={change} value={newClass.location}/>
                 <Input type='number' placeholder='Max class Size' name='maxClassSize' onChange={change} value={newClass.maxClassSize}/>
-                <button className='b1' type='submit'>Post Session</button>
+                <button disabled={buttonOff} className='b1' type='submit'>Post Session</button>
             </Form>
         </div>
         
