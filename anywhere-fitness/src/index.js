@@ -2,14 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
-//import App from './App';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
-import AltApp from './components/CompAW/altApp';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { reducer } from './reducers/reducer';
+import { Provider } from 'react-redux';
+
+const logger = ({ getState }) => (next) => (action) => {
+  console.log('Dispatching action:', action);
+  next(action);
+};
+
+let store = createStore(reducer, applyMiddleware(logger, thunk));
 
 ReactDOM.render(
-  <Router>
-    <AltApp />
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
 
