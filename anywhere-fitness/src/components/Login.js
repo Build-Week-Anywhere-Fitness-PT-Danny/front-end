@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Image, Container, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import logo from '../assets/logo_size.jpg';
+import { addAdmin } from '../actions/actions';
+import { connect } from 'react-redux';
 import './Login.css';
 
 const Login = (props) => {
@@ -22,7 +24,11 @@ const Login = (props) => {
         credentials
       )
       .then((res) => {
-        localStorage.setItem('token', res.data.payload);
+        console.log(res);
+        localStorage.setItem('token', res.data.token);
+        // localStorage.setItem('admin', res.data.user.admin);
+        props.addAdmin(res.data.user.admin);
+        console.log(localStorage);
         props.history.push('/protected');
       })
       .catch((err) => console.log({ err }));
@@ -61,4 +67,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default connect(null, { addAdmin })(Login);
