@@ -5,6 +5,7 @@ export const FETCHING_CLASSES_SUCCESS = 'FETCHING_CLASSES_SUCCESS';
 export const FETCHING_CLASSES_FAILURE = 'FETCHING_CLASSES_FAILURE';
 export const ADD_VALUE = 'ADD_VALUE';
 export const ADD_SELECT = 'ADD_SELECT';
+export const ADD_ADMIN = 'ADD_ADMIN';
 export const UPDATE_RESULTS = 'UPDATE_RESULTS';
 
 export const getClasses = () => (dispatch) => {
@@ -30,6 +31,11 @@ export const addValue = (value) => (dispatch) => {
 
 export const addSelect = (value) => (dispatch) => {
   dispatch({ type: ADD_SELECT, payload: value });
+};
+
+export const addAdmin = (value) => (dispatch) => {
+  console.log(value);
+  dispatch({ type: ADD_ADMIN, payload: value });
 };
 
 export const updateResults = (results) => (dispatch) => {

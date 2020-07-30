@@ -4,6 +4,7 @@ import {
   FETCHING_CLASSES_FAILURE,
   ADD_VALUE,
   ADD_SELECT,
+  ADD_ADMIN,
   UPDATE_RESULTS,
 } from '../actions/actions';
 // import _ from 'lodash';
@@ -14,21 +15,8 @@ const initialState = {
   newResults: [],
   error: '',
   values: '',
-  select: 'name',
-};
-
-const filterResults = (value, resultsArray) => {
-  // const re = new RegExp(_.escapeRegExp(value), 'i');
-  // const isMatch = (result) => re.test(result.title);
-  // const compare = _.filter(resultsArray, isMatch);
-  // console.log(compare);
-  // return compare;
-  let map = [];
-  return (map = resultsArray
-    .filter((resultsArray) => resultsArray.includes(value))
-    .map((filteredArray) => {
-      return filteredArray;
-    }));
+  select: '',
+  admin: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -56,6 +44,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         select: action.payload,
+      };
+    case ADD_ADMIN:
+      console.log(action.payload);
+      return {
+        ...state,
+        admin: action.payload,
       };
     case UPDATE_RESULTS:
       return {

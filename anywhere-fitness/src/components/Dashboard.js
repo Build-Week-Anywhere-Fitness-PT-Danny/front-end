@@ -24,14 +24,14 @@ const options = [
   { key: 'location', text: 'Location', value: 'location' },
 ];
 
-const adminValue = localStorage.getItem('admin');
-
-const Dashboard = ({ addValue, getClasses, addSelect }) => {
+const Dashboard = ({ addValue, getClasses, addSelect, admin }) => {
   useEffect(() => {
     getClasses();
   }, [getClasses]);
 
   let history = useHistory();
+
+  const adminValue = localStorage.getItem('admin');
 
   const [selectValue, setSelectValue] = useState();
   const [selected, setSelected] = useState();
@@ -55,12 +55,22 @@ const Dashboard = ({ addValue, getClasses, addSelect }) => {
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.clear();
+    console.log(localStorage);
     history.push('/');
   };
 
-  function LoggedIn(props) {
+  const handleCreateClass = (e) => {
+    e.preventDefault();
+    history.push('/protected/create');
+  };
+
+  function LoggedAdmin() {
     return (
-      <Button className="class_button" animated="fade">
+      <Button
+        className="class_button"
+        onClick={handleCreateClass}
+        animated="fade"
+      >
         <Button.Content visible>Create a Class</Button.Content>
         <Button.Content hidden>
           <Icon name="plus" />
@@ -69,22 +79,23 @@ const Dashboard = ({ addValue, getClasses, addSelect }) => {
     );
   }
 
-  function CreateClassButton(props) {
-    const isAdmin = props.isAdmin;
-    console.log(isAdmin);
-    if (isAdmin) {
-      return <LoggedIn />;
-    }
-    return null;
-  }
+  // function CreateClassButton(props) {
+  //   const isAdmin = props.isAdmin;
+  //   console.log(isAdmin);
+  //   if (isAdmin) {
+  //     return <LoggedAdmin />;
+  //   }
+  //   return null;
+  // }
+  console.log(admin);
 
   return (
     <div className="page_root">
       <header className="dashboard_header">
         <Image src={logo}></Image>
         <div className="header_buttons">
-          <CreateClassButton isAdmin={adminValue} />
-
+          {/* <CreateClassButton isAdmin={adminValue} /> */}
+          {admin ? <LoggedAdmin /> : <div></div>}
           <Button className="logout_button" onClick={handleLogout} animated>
             <Button.Content visible>Logout</Button.Content>
             <Button.Content hidden>
@@ -124,6 +135,7 @@ const Dashboard = ({ addValue, getClasses, addSelect }) => {
 
 const mapStateToProps = (state) => {
   return {
+    admin: state.admin,
     results: state.results,
     newResults: state.newResults,
     value: state.value,
@@ -132,4 +144,4 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { addValue, getClasses, addSelect };
 
-export default connect(null, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
