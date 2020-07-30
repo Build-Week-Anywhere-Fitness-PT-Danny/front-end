@@ -8,7 +8,7 @@ import {
   Button,
   Icon,
 } from 'semantic-ui-react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import logo from '../assets/logo_size.jpg';
 import SearchResults from './SearchResults';
 import { connect } from 'react-redux';
@@ -30,8 +30,6 @@ const Dashboard = ({ addValue, getClasses, addSelect, admin }) => {
   }, [getClasses]);
 
   let history = useHistory();
-
-  const adminValue = localStorage.getItem('admin');
 
   const [selectValue, setSelectValue] = useState();
   const [selected, setSelected] = useState();

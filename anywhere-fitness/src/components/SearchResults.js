@@ -37,7 +37,7 @@ const SearchResults = ({ isFetching, values, results, select }) => {
       );
       setNewResults(filter);
     }
-  }, [values]);
+  }, values);
 
   return (
     <div className="search_result_container">
