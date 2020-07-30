@@ -4,18 +4,18 @@ import PrivateRoute from './components/PrivateRoute';
 import Dashboard from './components/Dashboard';
 import CreateClass from './components/CreateClass';
 import Login from './components/Login';
-import Register from './components/Register';
+import Signup from './components/Components/Register/SignUp';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Route exact path="/">
+        {/* <Route path="/">
           <Redirect to="/login" />
-        </Route>
+        </Route> */}
         <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
+        <Route exact path="/register" component={Signup} />
         <PrivateRoute exact path="/protected" component={Dashboard} />
         <PrivateRoute exact path="/protected/create" component={CreateClass} />
       </div>
