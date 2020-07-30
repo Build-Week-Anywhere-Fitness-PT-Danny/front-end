@@ -1,6 +1,7 @@
 import React from 'react';
 import './home.css';
 import { Card } from 'semantic-ui-react';
+import Stars from './stars';
 
 
 const HomePage = props => {
@@ -15,12 +16,12 @@ const HomePage = props => {
 
 function WorkoutPost({ session }) {
     return(
-        <div className='card'>
+        <div className='post'>
             <div className='top'>
                 <h3>{session.name}</h3>
-                <p className={session.intensity}>{session.intensity}</p>
+                <Stars int={session.intensity}/>
             </div>
-            <div>
+            <div className='info'>
                 <p>Type: {session.type}</p>
                 <p>Location: {session.location}</p>
                 <p>spots: {session.numberOfRegisteredAttendees}/{session.maxClassSize}</p>

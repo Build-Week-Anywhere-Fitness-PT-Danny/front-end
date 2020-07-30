@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import { Form, Input, Button } from 'semantic-ui-react';
 import '../CompAW/createClass.css';
+import * as yup from 'yup';
 
 
 
@@ -54,10 +55,10 @@ const CreateClass = props => {
                 <div className='selectbox'>
                     <p>Intensity</p>
                     <select name='intensity'>
-                        <option value='★☆☆☆'>★☆☆☆</option>
-                        <option value='★★☆☆'>★★☆☆</option>
-                        <option value='★★★☆'>★★★☆</option>
-                        <option value='★★★★'>★★★★</option>
+                        <option value='1'>★☆☆☆</option>
+                        <option value='2'>★★☆☆</option>
+                        <option value='3'>★★★☆</option>
+                        <option value='4'>★★★★</option>
                     </select>
                 </div>
                 <Input type='text' placeholder='Location' name='location' onChange={change} value={newClass.location}/>

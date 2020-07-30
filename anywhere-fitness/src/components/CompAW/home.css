@@ -1,48 +1,31 @@
-.easy {
-    color: green;
-    margin-left: 3%;
-}
 
-★☆☆☆ {
-    color: green;
-    margin-left: 3%;
-}
 
-★★☆☆ {
-    color: yellow;
-    margin-left: 3%;
-}
-.★★★☆ {
-    color: orange;
-    margin-left: 3%;
-}
-
-.★★★★ {
-    color: red;
-    margin-left: 3%;
-}
-
-.card {
-    background: white;
-    width:25%;
-    height: 200px;
+.post {
+    border:2px solid #1EA896;
+    color: #FF715B;
+    background-color: #4C5454;
+    width:15%;
     margin-top: 5%;
+    height: 250px;
 }
 
-.hard {
-    color: red;
-    margin-left: 3%;
-}
 
-.medium {
-    color: orange;
-    margin-left: 3%;
-}
+
+
 
 .top {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #2F3434 ;
+    border-bottom: 2px solid #1EA896;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
 }
 
 .bod {
