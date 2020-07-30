@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 0%;
+}
+.cont {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+
+
+
