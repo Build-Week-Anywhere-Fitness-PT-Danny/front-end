@@ -157,7 +157,7 @@ body {
 }
 
 h1 {
-  color: #41b3a3;
+  color: #B23E1B;
   font-family: monospace;
   font-size: 40px;
 }
@@ -184,4 +184,12 @@ h1 {
 .linkStyle {
   color: white;
   text-decoration: underline darkslategrey;
+}
+
+.navBarLinks {
+  color:#B23E1B;
+}
+
+.errors {
+color: red;
 }

@@ -92,7 +92,7 @@ const handleSubmit = event => {
         props.setSavedClass([...props.savedClass,{createClass}])
     }
     axios
-    .post("https://reqres.in/api/api/classes", createClass)
+    .post(`https://anywhere-fitness-bw-2020.herokuapp.com/api/auth/classes`, createClass)
     .then(() => console.log("form submitted success", createClass))
     .catch(err => console.log(err));
 }
@@ -173,10 +173,9 @@ const handleSubmit = event => {
                             placeholder="Max Class Size"
                             onChange={handleChange}
                             value={createClass.maxClassSize}
-                            style={{ width: "250px" }}
-                            
+                            style={{ width: "250px" }}                           
                         />
-                        {errors.maxClassSize.length > 0 ? (<p>{errors.maxClassSize}</p>) : null}
+                        {errors.maxClassSize.length > 0 ? (<p>{errors.maxClassSize}</p>) : null }
                         <br />
                     <input
                         disabled={buttonDisabled}

@@ -8,14 +8,14 @@ function Login() {
     let onSubmit= (data) => {
         console.log(data);
         axios
-        .post("https://anywhere-fitness-bw-2020.herokuapp.com/api/auth/register", data)
+        .post("https://reqres.in/api/users", data)
         .then(() => console.log("form submitted success"))
         .catch(err => console.log(err));
     }
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
-            <h2>Login</h2>
+            <h1>Login</h1>
                 <input
                     type="text"
                     name="username"

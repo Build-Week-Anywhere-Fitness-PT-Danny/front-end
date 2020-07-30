@@ -2,7 +2,6 @@ import React from 'react'
 
 
 function SavedWorkoutList(props) {
-    // const [savedClass, setSavedClass] = useState([]);
 
     return (
         <div>
@@ -26,6 +25,3 @@ function SavedWorkoutList(props) {
 
 export default SavedWorkoutList
 
-// location: "",
-//     numberOfRegisteredAttendees: "",
-//     maxClassSize: ""

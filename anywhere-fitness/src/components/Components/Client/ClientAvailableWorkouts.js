@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Dropdown, Input } from 'semantic-ui-react'
+import { Input } from 'semantic-ui-react'
 import axios from 'axios'
 import * as Yup from "yup"
 
@@ -46,6 +46,7 @@ function ClientAvailableWorkouts(props) {
             .required(),
         location: Yup
             .string()
+            .min(5)
             .required("Must choose class size"),
       });
     
@@ -140,13 +141,14 @@ function ClientAvailableWorkouts(props) {
                         onChange={handleChange}
                         value={searchClass.location}
                     />
+                    {errors.location.length > 0 ? (<p>{errors.location}</p>) : null}
 
                         <input
                         id="submit"
                         type="submit"
                         name="submit"
                         className="submitBtn"
-                        // disabled={buttonDisabled}
+                        disabled={buttonDisabled}
                         style={{ width: "250px" }}
                     />
                 </form>

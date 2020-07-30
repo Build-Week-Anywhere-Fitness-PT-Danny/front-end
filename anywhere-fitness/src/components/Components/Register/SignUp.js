@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import * as Yup from "yup"
-import { Header } from 'semantic-ui-react'
 
 function SignUp() {
     //name
@@ -35,7 +34,7 @@ function SignUp() {
         event.preventDefault();
         console.log("form submitted!");
         axios
-          .post("https://anywhere-fitness-bw-2020.herokuapp.com/api/auth/register", values)
+          .post("https://reqres.in/api/users", values)
           .then(() => console.log("form submitted success"))
           console.log(values);
     }
@@ -45,7 +44,7 @@ function SignUp() {
         username: "",
         password: "",
         client: false,
-        instructor: false,
+        admin: false,
     })
 
     const formSchema = Yup.object().shape({
@@ -64,8 +63,9 @@ function SignUp() {
         client: Yup
           .boolean()
           .optional(),
-        instructor: Yup
+        admin: Yup
           .boolean()
+
       });
 
       useEffect(() => {
@@ -97,7 +97,7 @@ function SignUp() {
 return (
     <div>
         <form onSubmit={handleSubmit} className="formDiv">
-          <h1>Sign Up</h1>
+          <h1>Register</h1>
             <label htmlFor="fullname"> First and Last Name: 
                 <input
                     type="text"
@@ -144,7 +144,7 @@ return (
               <input 
                 type="checkbox" 
                 name="admin" 
-                value={values.instructor} 
+                value={values.admin} 
                 onChange={handleChange} 
                 />
             </label>
