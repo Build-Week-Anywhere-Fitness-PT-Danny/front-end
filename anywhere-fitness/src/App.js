@@ -16,13 +16,9 @@ function App() {
         </Route> */}
         <Switch>
           <Route path="/login" component={Login} />
-          <Route exact path="/register" component={Signup} />
-          <PrivateRoute exact path="/protected" component={Dashboard} />
-          <PrivateRoute
-            exact
-            path="/protected/create"
-            component={CreateClass}
-          />
+          <Route path="/register" component={Signup} />
+          <PrivateRoute path="/protected" component={Dashboard} />
+          <PrivateRoute path="/protected/create" component={CreateClass} />
         </Switch>
       </div>
     </Router>
