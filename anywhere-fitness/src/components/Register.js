@@ -4,14 +4,16 @@ import logo from '../assets/logo_size.jpg';
 import './Login.css';
 import axios from 'axios';
 import * as Yup from 'yup';
+import { useHistory } from 'react-router-dom';
 
 const Register = () => {
   const [values, setValues] = useState({
-    fullname: '',
     username: '',
     password: '',
     admin: false,
   });
+
+  const history = useHistory();
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
@@ -31,22 +33,24 @@ const Register = () => {
     event.preventDefault();
     console.log('form submitted!');
     axios
-      .post('https://reqres.in/api/users', values)
-      .then(() => console.log('form submitted success'));
+      .post(
+        'https://anywhere-fitness-bw-2020.herokuapp.com/api/auth/register',
+        values
+      )
+      .then(() => {
+        console.log('form submitted success');
+        history.push('/login');
+      });
     console.log(values);
   };
 
   const [errors, setErrors] = useState({
-    fullname: '',
     username: '',
     password: '',
     admin: false,
   });
 
   const formSchema = Yup.object().shape({
-    fullname: Yup.string()
-      .min(5, 'Must include Full Name')
-      .required('Must include Full Name'),
     username: Yup.string()
       .min(5, 'username must be atleast 5 characters long')
       .required('username is required'),
@@ -88,19 +92,6 @@ const Register = () => {
         style={{ opacity: '100%' }}
       >
         <h1>Register</h1>
-        <label htmlFor="fullname">
-          {' '}
-          First and Last Name:
-          <input
-            type="text"
-            name="fullname"
-            value={values.fullname}
-            onChange={handleChange}
-            error={errors.fullname}
-            style={{ width: '300px' }}
-          />
-          {errors.fullname.length > 0 ? <p>{errors.fullname}</p> : null}
-        </label>
 
         <label htmlFor="username">
           {' '}
@@ -145,6 +136,7 @@ const Register = () => {
           type="submit"
           name="submit"
           className="submitBtn"
+          style={{ width: '300px', marginBottom: '50px' }}
         />
       </form>
     </div>

@@ -1,43 +1,64 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { searchingVal } from '../actions/actions';
 import './SearchResults.css';
 
-const SearchResults = ({ isFetching, values, results, select }) => {
+const SearchResults = ({
+  searching,
+  values,
+  results,
+  select,
+  searchingVal,
+}) => {
   const [newResults, setNewResults] = useState();
 
   useEffect(() => {
-    if (select === 'name') {
-      const filter = results.filter((item) =>
-        item.name.toLowerCase().includes(values)
-      );
-      setNewResults(filter);
-    } else if (select === 'type') {
-      const filter = results.filter((item) =>
-        item.type.toLowerCase().includes(values)
-      );
-      setNewResults(filter);
-    } else if (select === 'time') {
-      const filter = results.filter((item) =>
-        item.startTime.toLowerCase().includes(values)
-      );
-      setNewResults(filter);
-    } else if (select === 'duration') {
-      const filter = results.filter((item) =>
-        item.duration.toLowerCase().includes(values)
-      );
-      setNewResults(filter);
-    } else if (select === 'intensity') {
-      const filter = results.filter((item) =>
-        item.intensity.toLowerCase().includes(values)
-      );
-      setNewResults(filter);
-    } else if (select === 'location') {
-      const filter = results.filter((item) =>
-        item.location.toLowerCase().includes(values)
-      );
-      setNewResults(filter);
+    if (searching) {
+      if (select === undefined) {
+        const filter = results.filter((item) =>
+          item.name.toLowerCase().includes(values)
+        );
+        searchingVal(false);
+        setNewResults(filter);
+      } else if (select === 'name') {
+        const filter = results.filter((item) =>
+          item.name.toLowerCase().includes(values)
+        );
+        searchingVal(false);
+        setNewResults(filter);
+      } else if (select === 'type') {
+        const filter = results.filter((item) =>
+          item.type.toLowerCase().includes(values)
+        );
+        searchingVal(false);
+        setNewResults(filter);
+      } else if (select === 'time') {
+        const filter = results.filter((item) =>
+          item.startTime.toLowerCase().includes(values)
+        );
+        searchingVal(false);
+        setNewResults(filter);
+      } else if (select === 'duration') {
+        const filter = results.filter((item) =>
+          item.duration.toLowerCase().includes(values)
+        );
+        searchingVal(false);
+        setNewResults(filter);
+      } else if (select === 'intensity') {
+        const filter = results.filter((item) =>
+          item.intensity.toLowerCase().includes(values)
+        );
+        searchingVal(false);
+        setNewResults(filter);
+      } else if (select === 'location') {
+        const filter = results.filter((item) =>
+          item.location.toLowerCase().includes(values)
+        );
+        searchingVal(false);
+        setNewResults(filter);
+      }
     }
-  }, [values]);
+  }, [searching]);
 
   return (
     <div className="search_result_container">
@@ -63,11 +84,11 @@ const SearchResults = ({ isFetching, values, results, select }) => {
 const mapStateToProps = (state) => {
   console.log(state);
   return {
+    searching: state.searching,
     results: state.results,
     values: state.values,
     select: state.select,
-    isFetching: state.isFetching,
   };
 };
 
-export default connect(mapStateToProps, {})(SearchResults);
+export default connect(mapStateToProps, { searchingVal })(SearchResults);

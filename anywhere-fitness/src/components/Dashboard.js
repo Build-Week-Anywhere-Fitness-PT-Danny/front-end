@@ -54,12 +54,12 @@ const Dashboard = ({ addValue, getClasses, addSelect, admin }) => {
     e.preventDefault();
     localStorage.clear();
     console.log(localStorage);
-    history.push('/');
+    history.push('/login');
   };
 
   const handleCreateClass = (e) => {
     e.preventDefault();
-    history.push('/protected/create');
+    history.push('/create');
   };
 
   function LoggedAdmin() {

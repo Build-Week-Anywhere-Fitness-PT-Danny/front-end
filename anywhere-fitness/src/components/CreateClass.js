@@ -10,10 +10,11 @@ import {
 } from 'semantic-ui-react';
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../assets/logo_size.jpg';
-import SearchResults from './SearchResults';
 import { connect } from 'react-redux';
 import { addValue, addSelect, getClasses } from '../actions/actions';
-import './Dashboard.css';
+import axios from 'axios';
+import './createClass.css';
+import * as yup from 'yup';
 
 const options = [
   { key: 'name', text: 'Name', value: 'name' },
@@ -24,44 +25,95 @@ const options = [
   { key: 'location', text: 'Location', value: 'location' },
 ];
 
-const adminValue = localStorage.getItem('admin');
-
-const Dashboard = ({ addValue, getClasses, addSelect }) => {
-  useEffect(() => {
-    getClasses();
-  }, [getClasses]);
-
+const CreateClass = ({ addValue, getClasses, addSelect, admin }) => {
   let history = useHistory();
-
-  const [selectValue, setSelectValue] = useState();
-  const [selected, setSelected] = useState();
-
-  const handleSearchChange = (e) => {
-    e.preventDefault();
-    setSelectValue(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addValue(selectValue);
-    addSelect(selected);
-  };
-
-  const handleSelectChange = (e, { value }) => {
-    e.preventDefault();
-    setSelected(value);
-  };
 
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.clear();
-    history.push('/');
+    history.push('/login');
   };
 
   const handleDashboard = (e) => {
     e.preventDefault();
     history.push('/protected');
   };
+
+  // OLD
+  // NEW
+
+  const defaultClass = {
+    name: '',
+    type: '',
+    startTime: '4:31pm',
+    duration: '',
+    intensity: 0,
+    location: '',
+    numberOfRegisteredAttendees: 0,
+    maxClassSize: 0,
+  };
+
+  const classSchema = yup.object().shape({
+    name: yup.string().required('Name is required'),
+    type: yup.string().required('type is required'),
+    startTime: yup.string().required('start time is required'),
+    duration: yup.string().required('duration is required'),
+    intensity: yup.number().required(),
+    location: yup.string().required('location is required'),
+    maxClassSize: yup.number().required('Class size is required'),
+  });
+
+  const [newClass, setNewClass] = useState(defaultClass);
+  const [errors, setErrors] = useState([]);
+  const [buttonOff, buttonTog] = useState(true);
+
+  const validateField = (e) => {
+    e.persist();
+
+    yup
+      .reach(classSchema, e.target.name)
+      .validate(e.target.value)
+      .then((valid) =>
+        setErrors({
+          ...errors,
+          [e.target.name]: '',
+        })
+      )
+      .catch((error) => {
+        console.log(error, e.target.name);
+        setErrors({
+          ...errors,
+          [e.target.name]: error.errors[0],
+        });
+      });
+  };
+
+  const change = (e) => {
+    setNewClass({
+      ...newClass,
+      [e.target.name]: e.target.value,
+    });
+    validateField(e);
+  };
+
+  const submit = (e) => {
+    console.log(newClass);
+    axios
+      .post(
+        `https://anywhere-fitness-bw-2020.herokuapp.com/api/classes`,
+        newClass
+      )
+      .then((res) => {
+        console.log('session posted', res);
+      })
+      .catch((er) => {
+        console.log('there was an error', er.response.statusText);
+      });
+  };
+
+  useEffect(() => {
+    classSchema.isValid(newClass).then((valid) => buttonTog(!valid));
+  }, [newClass]);
 
   function LoggedAdmin(props) {
     return (
@@ -78,21 +130,12 @@ const Dashboard = ({ addValue, getClasses, addSelect }) => {
     );
   }
 
-  function CreateClassButton(props) {
-    const isAdmin = props.isAdmin;
-    console.log(isAdmin);
-    if (isAdmin) {
-      return <LoggedAdmin />;
-    }
-    return null;
-  }
-
   return (
     <div className="page_root">
       <header className="dashboard_header">
         <Image src={logo}></Image>
         <div className="header_buttons">
-          <CreateClassButton isAdmin={adminValue} />
+          {admin ? <LoggedAdmin /> : <div></div>}
 
           <Button className="logout_button" onClick={handleLogout} animated>
             <Button.Content visible>Logout</Button.Content>
@@ -102,8 +145,67 @@ const Dashboard = ({ addValue, getClasses, addSelect }) => {
           </Button>
         </div>
       </header>
-      <div className="dashboard_root">
-        <Container className="left_dashboard"></Container>
+      <div className="class_dashboard_root">
+        <Container className="class_left_dashboard">
+          <Form onSubmit={submit} className="CCform">
+            <h2>Post your class!</h2>
+            <Input
+              type="text"
+              placeholder="Name"
+              name="name"
+              onChange={change}
+              value={newClass.name}
+            />
+            <Input
+              type="text"
+              placeholder="Type of workout"
+              name="type"
+              onChange={change}
+              value={newClass.type}
+            />
+            <Input
+              type="time"
+              name="startTime"
+              onChange={change}
+              value={newClass.startTime}
+            />
+            <div className="selectbox">
+              <p>Duration</p>
+              <select name="duration" onChange={change}>
+                <option value="1/2 hour">1/2 hour</option>
+                <option value="1 hour">1 hour</option>
+                <option value="1 1/2 hour">1 1/2 hour</option>
+                <option value="2 hour">2 hour</option>
+              </select>
+            </div>
+            <div className="selectbox" onChange={change}>
+              <p>Intensity</p>
+              <select name="intensity">
+                <option value="1">★☆☆☆</option>
+                <option value="2">★★☆☆</option>
+                <option value="3">★★★☆</option>
+                <option value="4">★★★★</option>
+              </select>
+            </div>
+            <Input
+              type="text"
+              placeholder="Location"
+              name="location"
+              onChange={change}
+              value={newClass.location}
+            />
+            <Input
+              type="number"
+              placeholder="Max class Size"
+              name="maxClassSize"
+              onChange={change}
+              value={newClass.maxClassSize}
+            />
+            <button disabled={buttonOff} className="b1" type="submit">
+              Post Class
+            </button>
+          </Form>
+        </Container>
       </div>
     </div>
   );
@@ -111,6 +213,7 @@ const Dashboard = ({ addValue, getClasses, addSelect }) => {
 
 const mapStateToProps = (state) => {
   return {
+    admin: state.admin,
     results: state.results,
     newResults: state.newResults,
     value: state.value,
@@ -119,4 +222,4 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { addValue, getClasses, addSelect };
 
-export default connect(null, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateClass);

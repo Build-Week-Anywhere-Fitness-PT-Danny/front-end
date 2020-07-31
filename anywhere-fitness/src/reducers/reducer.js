@@ -6,6 +6,7 @@ import {
   ADD_SELECT,
   ADD_ADMIN,
   UPDATE_RESULTS,
+  SEARCHING,
 } from '../actions/actions';
 // import _ from 'lodash';
 
@@ -17,6 +18,7 @@ const initialState = {
   values: '',
   select: '',
   admin: false,
+  searching: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -35,6 +37,11 @@ export const reducer = (state = initialState, action) => {
       };
     case FETCHING_CLASSES_FAILURE:
       return console.log(action.payload);
+    case SEARCHING:
+      return {
+        ...state,
+        searching: action.payload,
+      };
     case ADD_VALUE:
       return {
         ...state,
@@ -44,6 +51,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         select: action.payload,
+        searching: true,
       };
     case ADD_ADMIN:
       console.log(action.payload);

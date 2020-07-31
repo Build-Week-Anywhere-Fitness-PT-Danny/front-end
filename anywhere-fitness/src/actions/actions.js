@@ -7,6 +7,7 @@ export const ADD_VALUE = 'ADD_VALUE';
 export const ADD_SELECT = 'ADD_SELECT';
 export const ADD_ADMIN = 'ADD_ADMIN';
 export const UPDATE_RESULTS = 'UPDATE_RESULTS';
+export const SEARCHING = 'SEARCHING';
 
 export const getClasses = () => (dispatch) => {
   dispatch({ type: FETCHING_CLASSES_START });
@@ -23,6 +24,10 @@ export const getClasses = () => (dispatch) => {
         payload: err.response.statusText,
       });
     });
+};
+
+export const searchingVal = (value) => (dispatch) => {
+  dispatch({ type: SEARCHING, payload: value });
 };
 
 export const addValue = (value) => (dispatch) => {
