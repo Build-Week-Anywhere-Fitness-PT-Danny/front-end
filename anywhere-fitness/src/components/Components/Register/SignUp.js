@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as Yup from 'yup';
 
-function SignUp() {
+const SignUp = () => {
   //name
   //username
   //password
@@ -148,6 +148,6 @@ function SignUp() {
       </form>
     </div>
   );
-}
+};
 
 export default SignUp;
