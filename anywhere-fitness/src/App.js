@@ -15,7 +15,7 @@ function App() {
           <Redirect to="/login" />
         </Route> */}
         <Switch>
-          <Route exact path="/login" component={Login} />
+          <Route path="/login" component={Login} />
           <Route exact path="/register" component={Signup} />
           <PrivateRoute exact path="/protected" component={Dashboard} />
           <PrivateRoute
