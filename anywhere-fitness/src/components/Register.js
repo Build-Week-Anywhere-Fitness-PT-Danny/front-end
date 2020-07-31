@@ -82,7 +82,11 @@ const Register = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="formDiv">
+      <form
+        onSubmit={handleSubmit}
+        className="formDiv"
+        style={{ opacity: '100%' }}
+      >
         <h1>Register</h1>
         <label htmlFor="fullname">
           {' '}
