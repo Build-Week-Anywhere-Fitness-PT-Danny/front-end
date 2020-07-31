@@ -4,7 +4,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Dashboard from './components/Dashboard';
 import CreateClass from './components/CreateClass';
 import Login from './components/Login';
-import SignUp from './components/Components/Register/SignUp';
+import * as SignUp from './components/Components/Register/SignUp';
 import './App.css';
 
 function App() {
