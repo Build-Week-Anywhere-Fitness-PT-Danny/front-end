@@ -14,6 +14,7 @@ const initialState = {
   isFetching: false,
   results: [],
   newResults: [],
+  joinedClass: [],
   error: '',
   values: '',
   select: '',

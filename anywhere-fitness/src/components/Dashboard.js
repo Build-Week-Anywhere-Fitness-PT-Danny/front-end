@@ -82,8 +82,14 @@ const Dashboard = ({ addValue, getClasses, addSelect, admin }) => {
       <header className="dashboard_header">
         <Image src={logo}></Image>
         <div className="header_buttons">
-          {/* <CreateClassButton isAdmin={adminValue} /> */}
           {admin ? <LoggedAdmin /> : <div></div>}
+          <Button className="logout_button cart" animated="vertical">
+            <Button.Content hidden>Cart</Button.Content>
+            <Button.Content visible>
+              <Icon name="shop" />
+              <span>1</span>
+            </Button.Content>
+          </Button>
           <Button className="logout_button" onClick={handleLogout} animated>
             <Button.Content visible>Logout</Button.Content>
             <Button.Content hidden>
@@ -115,7 +121,6 @@ const Dashboard = ({ addValue, getClasses, addSelect, admin }) => {
           </Form>
           <SearchResults />
         </Container>
-        <Container className="right_dashboard"></Container>
       </div>
     </div>
   );

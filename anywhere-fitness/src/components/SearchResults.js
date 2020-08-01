@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { searchingVal } from '../actions/actions';
 import './SearchResults.css';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const SearchResults = ({
   searching,
@@ -11,6 +12,17 @@ const SearchResults = ({
   searchingVal,
 }) => {
   const [newResults, setNewResults] = useState();
+  const defaultClass = {
+    name: '',
+    type: '',
+    startTime: '',
+    duration: '',
+    intensity: '',
+    location: '',
+    numberOfRegisteredAttendees: '',
+    maxClassSize: '',
+  };
+  const [joinClass, setJoinClass] = useState(defaultClass);
 
   useEffect(() => {
     if (searching) {
@@ -60,6 +72,8 @@ const SearchResults = ({
     }
   }, [searching]);
 
+  const handleJoin = (e) => {};
+
   return (
     <div className="search_result_container">
       {newResults &&
@@ -67,13 +81,23 @@ const SearchResults = ({
           return (
             <div className="search_result_item" key={key}>
               <h3>{item.name}</h3>
-              <p>Class: {item.type}</p>
-              <p>Intensity: {item.intensity}</p>
-              <p>Location: {item.location}</p>
-              <p>
-                Seats remaining:
-                {item.maxClassSize - item.numberOfRegisteredAttendees}
-              </p>
+              <div className="s_r_d_container">
+                <div className="search_result_display">
+                  <p>Class: {item.type}</p>
+                  <p>Intensity: {item.intensity}</p>
+                  <p>Location: {item.location}</p>
+                  <p>
+                    Seats remaining:
+                    {item.maxClassSize - item.numberOfRegisteredAttendees}
+                  </p>
+                </div>
+                <button
+                  className="search_result_button"
+                  onClick={handleJoin(item)}
+                >
+                  Join!
+                </button>
+              </div>
             </div>
           );
         })}

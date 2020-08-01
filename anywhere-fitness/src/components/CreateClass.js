@@ -15,6 +15,7 @@ import { addValue, addSelect, getClasses } from '../actions/actions';
 import axios from 'axios';
 import './createClass.css';
 import * as yup from 'yup';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const options = [
   { key: 'name', text: 'Name', value: 'name' },
@@ -45,12 +46,12 @@ const CreateClass = ({ addValue, getClasses, addSelect, admin }) => {
   const defaultClass = {
     name: '',
     type: '',
-    startTime: '4:31pm',
+    startTime: '',
     duration: '',
-    intensity: 0,
+    intensity: '',
     location: '',
-    numberOfRegisteredAttendees: 0,
-    maxClassSize: 0,
+    numberOfRegisteredAttendees: 10,
+    maxClassSize: 15,
   };
 
   const classSchema = yup.object().shape({
@@ -89,6 +90,7 @@ const CreateClass = ({ addValue, getClasses, addSelect, admin }) => {
   };
 
   const change = (e) => {
+    e.preventDefault();
     setNewClass({
       ...newClass,
       [e.target.name]: e.target.value,
@@ -97,14 +99,13 @@ const CreateClass = ({ addValue, getClasses, addSelect, admin }) => {
   };
 
   const submit = (e) => {
+    e.preventDefault();
     console.log(newClass);
-    axios
-      .post(
-        `https://anywhere-fitness-bw-2020.herokuapp.com/api/classes`,
-        newClass
-      )
+    axiosWithAuth()
+      .post(`/classes`, newClass)
       .then((res) => {
         console.log('session posted', res);
+        alert('Class created!');
       })
       .catch((er) => {
         console.log('there was an error', er.response.statusText);

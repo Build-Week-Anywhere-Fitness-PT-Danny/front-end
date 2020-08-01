@@ -29,26 +29,15 @@
   width: 100%;
 }
 
-.ui.container.left_dashboard,
-.ui.container.right_dashboard {
-  width: 50%;
-  height: calc(100vh - 100px);
-}
-
 .ui.container.left_dashboard {
+  width: 100%;
+  height: calc(100vh - 100px);
   background-color: #f3eff5;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: start;
   padding: 2em;
-}
-
-.ui.container.right_dashboard {
-  background-color: white;
-  border-right: 0.5em solid #f3eff5;
-  border-top: 0.5em solid #f3eff5;
-  border-bottom: 0.5em solid #f3eff5;
 }
 
 .ui.button.class_button {
@@ -59,6 +48,7 @@
 .ui.button.logout_button {
   background: #1ea896;
   color: white;
+  height: 36px;
 }
 
 .ui.input {
@@ -75,4 +65,23 @@
 
 .ui.selection.dropdown {
   min-width: 8em;
+}
+
+span {
+  display: inline-block;
+  position: relative;
+  top: 0px;
+  left: 2px;
+  padding-right: 2px;
+  text-align: center;
+  line-height: 18px;
+  text-align: center;
+  background: lightcoral;
+  border-radius: 100%;
+  width: 18px;
+  height: 18px;
+}
+
+.ui.button.cart {
+  background: #4c5454;
 }
