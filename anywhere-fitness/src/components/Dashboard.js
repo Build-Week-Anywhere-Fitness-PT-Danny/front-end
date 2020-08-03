@@ -60,7 +60,7 @@ const Dashboard = ({ addValue, getClasses, addSelect, admin, joinedClass }) => {
 
   const handleCreateClass = (e) => {
     e.preventDefault();
-    history.push('/create');
+    history.push('/protected/create');
   };
 
   function LoggedAdmin() {

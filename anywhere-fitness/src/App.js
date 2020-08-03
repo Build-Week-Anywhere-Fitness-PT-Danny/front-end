@@ -19,7 +19,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <PrivateRoute path="/protected" component={Dashboard} />
-          <Route path="/create" component={CreateClass} />
+          <Route path="/protected/create" component={CreateClass} />
         </Switch>
       </div>
     </Router>
