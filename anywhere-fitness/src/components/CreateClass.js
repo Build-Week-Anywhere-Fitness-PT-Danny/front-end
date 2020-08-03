@@ -22,7 +22,7 @@ const CreateClass = ({
   getClasses,
   addSelect,
   admin,
-  joinedClass,
+  joinedClass_array,
 }) => {
   let history = useHistory();
 
@@ -138,7 +138,7 @@ const CreateClass = ({
             <Button.Content hidden>Cart</Button.Content>
             <Button.Content visible>
               <Icon name="shop" />
-              <span className="cart_span">{joinedClass.length}</span>
+              <span className="cart_span">{joinedClass_array.length}</span>
             </Button.Content>
           </Button>
           <Button className="logout_button" onClick={handleLogout} animated>
@@ -217,7 +217,7 @@ const CreateClass = ({
 
 const mapStateToProps = (state) => {
   return {
-    joinedClass: state.joinedClass,
+    joinedClass_array: state.joinedClass_array,
     admin: state.admin,
     results: state.results,
     newResults: state.newResults,
