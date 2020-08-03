@@ -16,10 +16,10 @@ function App() {
           <Redirect to="/login" />
         </Route> */}
         <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/create" component={CreateClass} />
           <PrivateRoute path="/protected" component={Dashboard} />
-          <Route path="/protected/create" component={CreateClass} />
         </Switch>
       </div>
     </Router>

@@ -86,7 +86,7 @@ const Register = () => {
 
   return (
     <div className="page_root">
-      <header className="header">
+      <header className="header_cust">
         <Image src={logo}></Image>
       </header>
       <Container className="register_root">
