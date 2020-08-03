@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Image, Container, Header } from 'semantic-ui-react';
+import { Image, Container, Header, Button, Form } from 'semantic-ui-react';
 import logo from '../assets/logo_size.jpg';
 import './Login.css';
 import axios from 'axios';
 import * as Yup from 'yup';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -85,60 +85,77 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <form
-        onSubmit={handleSubmit}
-        className="formDiv"
-        style={{ opacity: '100%' }}
-      >
-        <h1>Register</h1>
+    <div className="page_root">
+      <header className="header">
+        <Image src={logo}></Image>
+      </header>
+      <Container className="register_root">
+        <div className="register_container">
+          <Header as="h2">Register</Header>
+          <div className="input_con">
+            <form
+              onSubmit={handleSubmit}
+              className="login_form"
+              style={{ opacity: '100%' }}
+            >
+              <label htmlFor="username">
+                {' '}
+                Username :
+                <input
+                  type="text"
+                  name="username"
+                  className="login_input"
+                  value={values.username}
+                  onChange={handleChange}
+                  error={errors.username}
+                  style={{ width: '300px' }}
+                />
+                {errors.username.length > 0 ? <p>{errors.username}</p> : null}
+              </label>
 
-        <label htmlFor="username">
-          {' '}
-          Username :
-          <input
-            type="text"
-            name="username"
-            value={values.username}
-            onChange={handleChange}
-            error={errors.username}
-            style={{ width: '300px' }}
-          />
-          {errors.username.length > 0 ? <p>{errors.username}</p> : null}
-        </label>
+              <label htmlFor="password">
+                {' '}
+                Password :
+                <input
+                  type="password"
+                  name="password"
+                  className="login_input"
+                  value={values.password}
+                  onChange={handleChange}
+                  error={errors.password}
+                  style={{ width: '300px' }}
+                />
+                {errors.password.length > 0 ? <p>{errors.password}</p> : null}
+              </label>
+              <label htmlFor="admin">
+                Instructor:
+                <input
+                  type="checkbox"
+                  name="admin"
+                  value={values.admin}
+                  onChange={handleChange}
+                />
+              </label>
 
-        <label htmlFor="password">
-          {' '}
-          Password :
-          <input
-            type="password"
-            name="password"
-            value={values.password}
-            onChange={handleChange}
-            error={errors.password}
-            style={{ width: '300px' }}
-          />
-          {errors.password.length > 0 ? <p>{errors.password}</p> : null}
-        </label>
-        <label htmlFor="admin">
-          Instructor:
-          <input
-            type="checkbox"
-            name="admin"
-            value={values.admin}
-            onChange={handleChange}
-          />
-        </label>
+              <Button
+                disabled={buttonDisabled}
+                id="submit"
+                type="submit"
+                name="submit"
+                content="Register"
+                style={{ marginBottom: '50px' }}
+              />
+            </form>
+          </div>
 
-        <input
-          disabled={buttonDisabled}
-          id="submit"
-          type="submit"
-          name="submit"
-          className="submitBtn"
-          style={{ width: '300px', marginBottom: '50px' }}
-        />
-      </form>
+          <div>
+            <h3>Have an account?</h3>
+            <Link to="/login" className="log_link">
+              Login
+            </Link>
+          </div>
+        </div>
+      </Container>
     </div>
   );
 };

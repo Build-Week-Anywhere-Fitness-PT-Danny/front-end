@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Image,
-  Container,
-  Form,
-  Input,
-  Select,
-  Button,
-  Icon,
-} from 'semantic-ui-react';
-import { Link, useHistory } from 'react-router-dom';
+import { Image, Container, Form, Input, Button, Icon } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 import logo from '../assets/logo_size.jpg';
 import { connect } from 'react-redux';
 import { addValue, addSelect, getClasses } from '../actions/actions';
-import axios from 'axios';
 import './createClass.css';
 import * as yup from 'yup';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
@@ -26,7 +17,13 @@ const options = [
   { key: 'location', text: 'Location', value: 'location' },
 ];
 
-const CreateClass = ({ addValue, getClasses, addSelect, admin }) => {
+const CreateClass = ({
+  addValue,
+  getClasses,
+  addSelect,
+  admin,
+  joinedClass,
+}) => {
   let history = useHistory();
 
   const handleLogout = (e) => {
@@ -50,8 +47,8 @@ const CreateClass = ({ addValue, getClasses, addSelect, admin }) => {
     duration: '',
     intensity: '',
     location: '',
-    numberOfRegisteredAttendees: 10,
-    maxClassSize: 15,
+    numberOfRegisteredAttendees: '',
+    maxClassSize: '',
   };
 
   const classSchema = yup.object().shape({
@@ -137,7 +134,13 @@ const CreateClass = ({ addValue, getClasses, addSelect, admin }) => {
         <Image src={logo}></Image>
         <div className="header_buttons">
           {admin ? <LoggedAdmin /> : <div></div>}
-
+          <Button className="logout_button cart" animated="vertical">
+            <Button.Content hidden>Cart</Button.Content>
+            <Button.Content visible>
+              <Icon name="shop" />
+              <span className="cart_span">{joinedClass.length}</span>
+            </Button.Content>
+          </Button>
           <Button className="logout_button" onClick={handleLogout} animated>
             <Button.Content visible>Logout</Button.Content>
             <Button.Content hidden>
@@ -214,6 +217,7 @@ const CreateClass = ({ addValue, getClasses, addSelect, admin }) => {
 
 const mapStateToProps = (state) => {
   return {
+    joinedClass: state.joinedClass,
     admin: state.admin,
     results: state.results,
     newResults: state.newResults,

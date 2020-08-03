@@ -11,6 +11,7 @@ import {
 import { useHistory } from 'react-router-dom';
 import logo from '../assets/logo_size.jpg';
 import SearchResults from './SearchResults';
+import Cart from './Cart';
 import { connect } from 'react-redux';
 import { addValue, addSelect, getClasses } from '../actions/actions';
 import './Dashboard.css';
@@ -24,7 +25,7 @@ const options = [
   { key: 'location', text: 'Location', value: 'location' },
 ];
 
-const Dashboard = ({ addValue, getClasses, addSelect, admin }) => {
+const Dashboard = ({ addValue, getClasses, addSelect, admin, joinedClass }) => {
   useEffect(() => {
     getClasses();
   }, [getClasses]);
@@ -83,13 +84,7 @@ const Dashboard = ({ addValue, getClasses, addSelect, admin }) => {
         <Image src={logo}></Image>
         <div className="header_buttons">
           {admin ? <LoggedAdmin /> : <div></div>}
-          <Button className="logout_button cart" animated="vertical">
-            <Button.Content hidden>Cart</Button.Content>
-            <Button.Content visible>
-              <Icon name="shop" />
-              <span>1</span>
-            </Button.Content>
-          </Button>
+          <Cart />
           <Button className="logout_button" onClick={handleLogout} animated>
             <Button.Content visible>Logout</Button.Content>
             <Button.Content hidden>
@@ -128,6 +123,7 @@ const Dashboard = ({ addValue, getClasses, addSelect, admin }) => {
 
 const mapStateToProps = (state) => {
   return {
+    joinedClass: state.joinedClass,
     admin: state.admin,
     results: state.results,
     newResults: state.newResults,

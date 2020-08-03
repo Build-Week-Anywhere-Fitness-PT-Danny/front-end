@@ -2,7 +2,7 @@
   text-align: center;
   background-image: url(../src/Images/stretching.jpg);
   background-size: cover;
-  width: 1400px;
+  width: 100vw;
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
@@ -143,7 +143,7 @@ textarea {
 }
 
 body {
-  background-color: rgb(231, 231, 231);
+  background-color: rgb(255, 255, 255);
   height: 100%;
   margin: 0;
 }

@@ -8,6 +8,8 @@ export const ADD_SELECT = 'ADD_SELECT';
 export const ADD_ADMIN = 'ADD_ADMIN';
 export const UPDATE_RESULTS = 'UPDATE_RESULTS';
 export const SEARCHING = 'SEARCHING';
+export const ADD_JOINED_CLASS = 'ADD_JOINED_CLASS';
+export const ADD_CLASS_TO_DB = 'ADD_CLASS_TO_DB';
 
 export const getClasses = () => (dispatch) => {
   dispatch({ type: FETCHING_CLASSES_START });
@@ -24,6 +26,14 @@ export const getClasses = () => (dispatch) => {
         payload: err.response.statusText,
       });
     });
+};
+
+export const addJoinedClass = (value) => (dispatch) => {
+  dispatch({ type: ADD_JOINED_CLASS, payload: value });
+};
+
+export const addClassToDB = (value) => (dispatch) => {
+  dispatch({ type: ADD_CLASS_TO_DB, payload: value });
 };
 
 export const searchingVal = (value) => (dispatch) => {

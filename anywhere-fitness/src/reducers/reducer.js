@@ -7,19 +7,38 @@ import {
   ADD_ADMIN,
   UPDATE_RESULTS,
   SEARCHING,
+  ADD_JOINED_CLASS,
+  ADD_CLASS_TO_DB,
 } from '../actions/actions';
-// import _ from 'lodash';
 
 const initialState = {
   isFetching: false,
   results: [],
   newResults: [],
-  joinedClass: [],
+  joinedClass_array: [],
+  addToDB: [],
   error: '',
   values: '',
   select: '',
   admin: false,
   searching: false,
+};
+
+const addToDB = (item) => {
+  const newArray = {
+    id: item.id,
+    name: item.name,
+    type: item.type,
+    startTime: item.startTime,
+    duration: item.duration,
+    intensity: item.intensity,
+    location: item.location,
+    numberOfRegisteredAttendees: item.numberOfRegisteredAttendees + 1,
+    maxClassSize: item.maxClassSize,
+  };
+
+  console.log(newArray);
+  return newArray;
 };
 
 export const reducer = (state = initialState, action) => {
@@ -42,6 +61,16 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         searching: action.payload,
+      };
+    case ADD_JOINED_CLASS:
+      return {
+        ...state,
+        joinedClass_array: [...state.joinedClass_array, action.payload],
+      };
+    case ADD_CLASS_TO_DB:
+      return {
+        ...state,
+        addToDB: addToDB(action.payload),
       };
     case ADD_VALUE:
       return {
