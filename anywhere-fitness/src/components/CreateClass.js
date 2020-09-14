@@ -185,10 +185,10 @@ const CreateClass = ({
             <div className="selectbox" onChange={change}>
               <p>Intensity</p>
               <select name="intensity">
-                <option value="1">★☆☆☆</option>
-                <option value="2">★★☆☆</option>
-                <option value="3">★★★☆</option>
-                <option value="4">★★★★</option>
+                <option value={1}>★☆☆☆</option>
+                <option value={2}>★★☆☆</option>
+                <option value={3}>★★★☆</option>
+                <option value={4}>★★★★</option>
               </select>
             </div>
             <Input
