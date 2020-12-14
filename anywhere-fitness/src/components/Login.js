@@ -87,6 +87,12 @@ const Login = (props) => {
               Register
             </Link>
           </div>
+          <br />
+          <div>
+            <h3>For demo purposes, please use:</h3>
+            <p>Username: <b>instructor</b></p>
+            <p>Password <b>password</b></p>
+          </div>
         </div>
       </Container>
     </div>

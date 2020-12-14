@@ -95,6 +95,7 @@ const Dashboard = ({ addValue, getClasses, addSelect, admin, joinedClass }) => {
       </header>
       <div className="dashboard_root">
         <Container className="left_dashboard">
+          <h2>Welcome to Anywhere Fitness! Try searching for a class such as yoga or pilates</h2>
           <Form className="search_form" onSubmit={handleSubmit}>
             <Input
               type="text"

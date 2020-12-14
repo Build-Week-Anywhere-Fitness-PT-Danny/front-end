@@ -6,6 +6,11 @@ import './Cart.css';
 const Cart = ({ joinedClass_array }) => {
   const [open, setOpen] = React.useState(false);
 
+  const handleRemove = (e, item) => {
+    e.preventDefault();
+    
+  };
+
   return (
     <Modal
       onClose={() => setOpen(false)}
@@ -25,25 +30,34 @@ const Cart = ({ joinedClass_array }) => {
     >
       <Modal.Header className="modal_header">Your Classes</Modal.Header>
       <Modal.Content>
+      <div className="cart_result_container" >
         {joinedClass_array &&
           joinedClass_array.map((item, key) => {
             return (
-              <div className="search_result_item" key={key}>
-                <div className="s_r_d_container">
-                  <h2>{item.name}</h2>
-                  <div className="search_result_display">
-                    <p>Class: {item.type}</p>
-                    <p>Intensity: {item.intensity}</p>
-                    <p>Location: {item.location}</p>
-                    <p>
-                      Seats remaining:
-                      {item.maxClassSize - item.numberOfRegisteredAttendees}
-                    </p>
+              
+                <div className="cart_result_item" key={key}>
+                  <div className="cart_container">
+                    <h2>{item.name}</h2>
+                    <div className="cart_result_display">
+                      <p>Class: {item.type}</p>
+                      <p>Intensity: {item.intensity}</p>
+                      <p>Location: {item.location}</p>
+                      <p>
+                        Seats remaining:
+                        {item.maxClassSize - item.numberOfRegisteredAttendees}
+                      </p>
+                    </div>  
                   </div>
+                  <button
+                  className="cart_result_button"
+                  onClick={(e) => handleRemove(e, item)}
+                >
+                  -
+                </button>
                 </div>
-              </div>
             );
           })}
+          </div>
       </Modal.Content>
     </Modal>
   );

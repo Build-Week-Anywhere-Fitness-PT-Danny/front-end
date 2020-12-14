@@ -99,21 +99,6 @@ const SearchResults = ({
 
   const handleJoin = (e, item) => {
     e.preventDefault();
-    // setJoinClass({
-    //   id: item.id,
-    //   name: item.name,
-    //   type: item.type,
-    //   startTime: item.startTime,
-    //   duration: item.duration,
-    //   intensity: item.intensity,
-    //   location: item.location,
-    //   numberOfRegisteredAttendees: item.numberOfRegisteredAttendees + 1,
-    //   maxClassSize: item.maxClassSize,
-    // });
-    // console.log(joinClass);
-    // addJoinedClass(item);
-    // console.log(joinedClass);
-    // submit(e, joinClass);
     addJoinedClass(item);
     addClassToDB(item);
     submit(e, item);
